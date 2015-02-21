@@ -8,6 +8,8 @@ angular.module('qodex')
       path: '/socket.io'
     });
 
+    var subscribes = [];
+
     var socket = socketFactory({ ioSocket: ioSocket });
 
     function idMap (items) {
@@ -15,6 +17,16 @@ angular.module('qodex')
     }
 
     return {
+
+      emit: function (str) {
+        socket.emit(str);
+      },
+
+      on: function (pattern, cb) {
+        subscribes.push(pattern);
+        socket.on(pattern, cb);
+      },
+
       syncModel: function (model, items) {
 
         socket.on(model + ':save', function (doc) {
@@ -37,6 +49,14 @@ angular.module('qodex')
       unsyncModel: function (model) {
         socket.removeAllListeners(model + ':save');
         socket.removeAllListeners(model + ':remove');
+      },
+
+      clean: function () {
+        subscribes.forEach(function (sub) {
+          socket.removeAllListeners(sub);
+          console.log(sub)
+        });
+        subscribes = [];
       }
     };
 

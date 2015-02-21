@@ -32,6 +32,9 @@
           <a href="/">home</a>
         </li>
         <li ng-if="Auth.isLogged()">
+          <a href="/admin">admin</a>
+        </li>
+        <li ng-if="Auth.isLogged()">
           <a href="" ng-click="Auth.logout()">logout</a>
         </li>
       </ul>
@@ -64,6 +67,8 @@
       <script src="views/admin/admin.js"></script>
       <script src="views/home/home.controller.js"></script>
       <script src="views/home/home.js"></script>
+      <script src="views/login/login.controller.js"></script>
+      <script src="views/login/login.js"></script>
       <!-- endinject -->
     <!-- endbuild -->
 

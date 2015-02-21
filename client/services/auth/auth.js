@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('qodex')
-  .service('Auth', function ($rootScope, $cookieStore, $q, $http, $window) {
+  .service('Auth', function ($rootScope, $cookieStore, $q, $http, $window, $location) {
 
     var _user = {};
 
@@ -61,6 +61,7 @@ angular.module('qodex')
     this.logout = function () {
       $cookieStore.remove('token');
       _user = {};
+      $location.path('/login');
     };
 
     /**
@@ -70,6 +71,21 @@ angular.module('qodex')
      */
     this.isLogged = function () {
       return _user.hasOwnProperty('email');
+    };
+
+    /**
+     * Check if user is logged asynchronously
+     */
+    this.isLoggedAsync = function () {
+      var def = $q.defer();
+      $http.get('/api/users/me')
+        .then(function () {
+          def.resolve();
+        })
+        .catch(function () {
+          def.reject();
+        });
+      return def.promise;
     };
 
     /**

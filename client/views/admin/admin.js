@@ -6,6 +6,7 @@ angular.module('qodex')
       .when('/admin', {
         templateUrl: 'views/admin/admin.html',
         controller: 'AdminCtrl',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        authenticate: true
       });
   });
