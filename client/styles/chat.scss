@@ -1,0 +1,44 @@
+@import "variables";
+
+.chat {
+
+  .chat-messages {
+    padding: 1em;
+    background: rgba(white, .4);
+    border: 1px solid white;
+    em {
+      font-style: italic;
+      color: rgba(black, .6);
+      text-align: right;
+      display: block;
+    }
+  }
+
+  .form-message {
+    width: 100%;
+    display: table;
+    .form-message--text, .form-message--submit {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .form-message--submit {
+      width: 100px;
+    }
+    .form-message--text {
+      input {
+        outline: none;
+        height: 4em;
+        font: inherit;
+        width: 100%;
+        padding: 1em;
+        background: white;
+        border: none;
+        border-bottom: 4px solid transparent;
+        &:focus {
+          border-bottom-color: $blue2;
+        }
+      }
+    }
+  }
+
+}

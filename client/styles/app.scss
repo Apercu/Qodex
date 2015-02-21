@@ -6,6 +6,8 @@
 @import "button";
 @import "choose-block";
 @import "quizz";
+@import "chat";
+@import "room";
 
 * {
   box-sizing: border-box;
@@ -144,4 +146,11 @@ hr {
   > span {
     color: $c-dark;
   }
+}
+
+.explain-block {
+  background: $blue3;
+  padding: 1em;
+  border: 1px solid rgba(white, .5);
+  box-shadow: rgba(black, .3) 0 2px 3px;
 }
