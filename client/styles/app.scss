@@ -39,3 +39,17 @@ button {
     display: block;
   }
 }
+
+.login-bloc {
+
+  text-align: center;
+
+  > header {
+    padding: 60px 0;
+  }
+
+  .fb-connect {
+    margin: 0 auto;
+  }
+
+}
