@@ -1,9 +1,15 @@
 <div class="side-user">
 
-  <img ng-click="vm.toggle = !vm.toggle" ng-src="http://graph.facebook.com/{{ Auth.getUser().facebook.id }}/picture?type=square"/>
+  <img ng-click="vm.toggle = !vm.toggle"
+       ng-class="{ active: vm.toggle }"
+       ng-src="http://graph.facebook.com/{{ Auth.getUser().facebook.id }}/picture?type=square"/>
 
   <ul class="menu" ng-show="vm.toggle">
-    <li>Compte</li>
+    <li>
+      <a href="/account">
+        Compte
+      </a>
+    </li>
     <li>
       <a href="" ng-click="Auth.logout()">Deconnexion</a>
     </li>

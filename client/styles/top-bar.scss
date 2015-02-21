@@ -32,8 +32,10 @@
     top: 60px;
     text-align: right;
     > li {
-      display: block;
-      padding: .5em;
+      a {
+        display: block;
+        padding: .5em;
+      }
     }
   }
 }
