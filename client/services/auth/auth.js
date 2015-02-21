@@ -1,18 +1,12 @@
 'use strict';
 
 angular.module('qodex')
-  .service('Auth', function ($rootScope, $cookieStore, $q, $http, $window, $location) {
+  .service('Auth', function ($rootScope, $cookieStore, $q, $http, $window, $location, User) {
 
     var _user = {};
 
     if ($cookieStore.get('token')) {
-      $http.get('/api/users/me')
-        .then(function (res) {
-          _user = res.data;
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
+      _user = User.get();
     }
 
     /**
@@ -25,7 +19,7 @@ angular.module('qodex')
       var deferred = $q.defer();
       $http.post('/api/users', user)
         .then(function (res) {
-          _user = res.data.user;
+          _user = User.get();
           $cookieStore.put('token', res.data.token);
           deferred.resolve();
         })
@@ -45,7 +39,7 @@ angular.module('qodex')
       var deferred = $q.defer();
       $http.post('/auth/local', user)
         .then(function (res) {
-          _user = res.data.user;
+          _user = User.get();
           $cookieStore.put('token', res.data.token);
           deferred.resolve();
         })
@@ -74,10 +68,18 @@ angular.module('qodex')
     };
 
     /**
-     * Check if token present
+     * Check if user is logged asynchronously
      */
-    this.hasCookie = function () {
-      return $cookieStore.get('token');
+    this.isLoggedAsync = function (cb) {
+      if (_user.hasOwnProperty('$promise')) {
+        _user.$promise.then(function () {
+          cb(true);
+        }).catch(function () {
+          cb(false);
+        });
+      } else {
+        cb(false);
+      }
     };
 
     /**

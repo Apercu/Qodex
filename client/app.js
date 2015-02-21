@@ -4,6 +4,7 @@ angular.module('qodex', [
   'ngRoute',
   'ngCookies',
   'ngAnimate',
+  'ngResource',
   'btford.socket-io'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
@@ -46,8 +47,12 @@ angular.module('qodex', [
   .run(function ($location, $rootScope, Auth) {
 
     $rootScope.$on('$routeChangeStart', function (scope, route) {
-      if (route.authenticate && !Auth.hasCookie()) {
-        $location.path('/login');
+      if (route.authenticate) {
+        Auth.isLoggedAsync(function (isLogged) {
+          if (!isLogged) {
+            $location.path('/login');
+          }
+        });
       }
     });
 

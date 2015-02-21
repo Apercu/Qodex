@@ -1,3 +1,18 @@
-<div>
-  {{ vm.name }}
-</div>
+<h1>Welcome to the room {{ vm.name }} {{ vm.username }}!</h1>
+<h3>
+  There is currently
+  <ng-pluralize count="vm.nbPlayers" when="{ '1': 'only you', 'other': '{} players'  }"></ng-pluralize> in the room
+</h3>
+
+<br/>
+<br/> <!-- lol -->
+
+<h3>Chatroom</h3>
+<input type="text" ng-model="vm.newMessage">
+<input type="button" ng-click="vm.sendMessage()" value="Send">
+<ul>
+  <li ng-repeat="msg in vm.messages">
+    <em ng-if="msg.user === 'system'">{{ msg.txt }}</em>
+    <span ng-if="msg.user !== 'system'">{{ msg.user }}: {{ msg.txt }}</span>
+  </li>
+</ul>

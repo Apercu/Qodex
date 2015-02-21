@@ -1,10 +1,12 @@
 <h1>{{ vm.quizz.name }}</h1>
 <span ng-repeat="tag in vm.quizz.tags" class="quizz-tag">{{ tag }}</span>
 
-<input type="text" ng-model="vm.name" placeholder="Room name">
-<button ng-click="vm.createRoom()">Create room</button>
-
 <h3>Rooms</h3>
+
+<div>
+  <input type="text" ng-model="vm.name" placeholder="Room name">
+  <button ng-click="vm.createRoom()">Create room</button>
+</div>
 
 <div ng-click="vm.switchRoom(room.id)" ng-repeat="room in vm.rooms" class="quizz-room">
   <h3>{{ room.name }}</h3>

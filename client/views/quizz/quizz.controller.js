@@ -25,7 +25,12 @@ angular.module('qodex')
         if (!vm.name) { return; }
         Socket.emit('createRoom', { name: vm.name, quizzId: vm.quizz._id });
         Socket.on('roomCreated', function (data) {
-          $location.path('/rooms/' + data.id);
+          if (data.err === 'already') {
+            vm.name = '';
+            alert('This name already exits, please pick another one.');
+          } else {
+            $location.path('/rooms/' + data.id);
+          }
         });
       },
       switchRoom: function (id) {
@@ -33,6 +38,6 @@ angular.module('qodex')
       }
     });
 
-    $scope.$on('destroy', Socket.clean);
+    $scope.$on('$destroy', Socket.clean);
 
   });

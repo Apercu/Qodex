@@ -15,11 +15,16 @@ module.exports = function (io) {
       socket.emit('listRooms', rooms);
     });
 
-    /*
-    ** Create a new room for a quizz
-    */
+    /**
+     * Create a new room for a quizz
+     */
     socket.on('createRoom', function (data) {
       var gameId = slug(data.name);
+      if (rooms.map(function (e) { return e.id; }).indexOf(gameId) !== -1) {
+        socket.emit('roomCreated', { err: 'already' });
+        return ;
+      }
+
       rooms.push({ id: gameId, name: data.name, quizz: data.quizzId, players: 0 });
 
       socket.join(gameId);
@@ -27,25 +32,45 @@ module.exports = function (io) {
       socket.broadcast.emit('newRoom', { id: gameId });
     });
 
-    /*
-    ** Join an existing room
-    */
+    /**
+     * Join an existiong room
+     */
     socket.on('join', function (data) {
+      if (!data.room) { return; }
       socket.join(data.room);
-      socket.broadcast.to(data.room).emit({ type: 'join', user: data.user });
-      rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)].players++;
+      socket.broadcast.to(data.room).emit('userJoin', { type: 'join', user: data.user });
+
+      var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
+      if (room) {
+        room.players++;
+      }
     });
 
-    /*
-    ** Leave a room
-    */
+    /**
+     * Leave a room
+     */
     socket.on('leave', function (data) {
-      socket.broadcast.to(data.room).emit({ type: 'leave', user: data.user });
+      socket.broadcast.to(data.room).emit('userLeave', { type: 'leave', user: data.user });
       socket.leave(data.room);
-      rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)].players--;
+
+      var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
+      console.log(room)
+      if (room) {
+        console.log(room)
+        room.players--;
+        if (room.players === 0) {
+          rooms.splice(rooms.map(function (e) { return e.id; }).indexOf(room.id), 1);
+        }
+      }
     });
 
-
+    /**
+     * Create a new message in the room
+     */
+    socket.on('postMessage', function (data) {
+      console.log(data)
+      io.sockets.in(data.room).emit('newMessage', { msg: data.msg, user: data.user });
+    });
 
     // sockets inserts
     require('../api/quizz/quizz.socket.js').register(socket);
