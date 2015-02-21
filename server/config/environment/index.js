@@ -20,7 +20,7 @@ var all = {
   facebook: {
     appId: '355095451349552',
     secret: '55b0452b400d71cef6a419a91613d7ea',
-    callback: 'http://192.99.2.67:4460//auth/facebook/callback'
+    callback: 'http://qodex.fr/auth/facebook/callback'
   },
 
   secrets: {
