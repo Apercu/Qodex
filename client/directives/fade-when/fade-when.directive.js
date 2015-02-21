@@ -5,13 +5,15 @@ angular.module('qodex')
     return {
       restrict: 'EA',
       scope: {
-        toWatch: '@fadeWhen'
+        toWatch: '@fadeWhen',
+        y: '@'
       },
       link: function (scope, element) {
         $rootScope.$watch(scope.toWatch, function () {
           if ($rootScope.$eval(scope.toWatch)) {
             TweenMax.to(element, .3, {
-              opacity: 0
+              opacity: 0,
+              y: scope.y
             });
           }
         });
