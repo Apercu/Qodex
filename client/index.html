@@ -26,11 +26,11 @@
   </head>
   <body>
 
-    <strong>qodex</strong>
+    <img src="assets/images/sigle-qodex.svg" alt=""/>
 
     <nav>
       <ul>
-        <li>
+        <li ng-if="Auth.isLogged()">
           <a href="/">home</a>
         </li>
         <li ng-if="Auth.isLogged()">
@@ -41,8 +41,6 @@
         </li>
       </ul>
     </nav>
-
-    <pre>logged in: {{ Auth.isLogged() }}</pre>
 
     <div ng-view></div>
 
