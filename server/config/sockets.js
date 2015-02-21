@@ -25,11 +25,11 @@ module.exports = function (io) {
         return ;
       }
 
-      rooms.push({ id: gameId, name: data.name, quizz: data.quizzId, players: 0 });
+      rooms.push({ id: gameId, name: data.name, quizz: data.quizzId, players: 0, launched: false });
 
       socket.join(gameId);
       socket.emit('roomCreated', { id: gameId });
-      socket.broadcast.emit('newRoom', { id: gameId });
+      socket.broadcast.emit('newRoom', { id: gameId, name: data.name, quizz: data.quizzId, players: 1 });
     });
 
     /**
@@ -47,10 +47,7 @@ module.exports = function (io) {
       }
     });
 
-    /**
-     * Leave a room
-     */
-    socket.on('leave', function (data) {
+    function leaveRoom (data) {
       socket.broadcast.to(data.room).emit('userLeave', { type: 'leave', user: data.user });
       socket.leave(data.room);
 
@@ -58,17 +55,35 @@ module.exports = function (io) {
       if (room) {
         room.players--;
         if (room.players === 0) {
+          io.sockets.emit('removeRoom', { id: room.id });
           rooms.splice(rooms.map(function (e) { return e.id; }).indexOf(room.id), 1);
         }
       }
+    }
+
+    /**
+     * Leave a room
+     */
+    socket.on('leave', function (data) {
+      leaveRoom(data);
     });
 
     /**
      * Create a new message in the room
      */
     socket.on('postMessage', function (data) {
-      console.log(data)
       io.sockets.in(data.room).emit('newMessage', { msg: data.msg, user: data.user });
+    });
+
+    /**
+     * Launch the game
+     */
+    socket.on('launchGame', function (data) {
+      var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
+
+      if (room) {
+        room.launched = true;
+      }
     });
 
     // sockets inserts

@@ -1,8 +1,13 @@
-<h1>Welcome to the room {{ vm.name }} {{ vm.username }}!</h1>
+<h1>Bienvenue dans le salon {{ vm.name }} {{ vm.username }} !</h1>
 <h3>
-  There is currently
-  <ng-pluralize count="vm.nbPlayers" when="{ '1': 'only you', 'other': '{} players'  }"></ng-pluralize> in the room
+  Il y a actuellement
+  <ng-pluralize count="vm.nbPlayers" when="{ '1': '1 joueur', 'other': '{} joueurs'  }"></ng-pluralize>.
 </h3>
+
+<div ng-if="vm.isLead">
+  Quand vous etes prets, vous pouvez lancer le test pour tous les membres du salon.
+  <button ng-click="vm.launch()">Lancer</button>
+</div>
 
 <br/>
 <br/> <!-- lol -->

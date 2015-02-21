@@ -38,6 +38,19 @@ angular.module('qodex')
       }
     });
 
+    Socket.on('newRoom', function (data) {
+      if (data.quizz === vm.quizz._id) {
+        vm.rooms.push(data);
+      }
+    });
+
+    Socket.on('removeRoom', function (data) {
+      var index = vm.rooms.map(function (e) { return e.id; });
+      if (index !== -1) {
+        vm.rooms.splice(index, 1);
+      }
+    });
+
     $scope.$on('$destroy', Socket.clean);
 
   });
