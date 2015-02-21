@@ -1,3 +1,6 @@
 <button ng-click="vm.connect()" class="fb-connect" ng-disabled="vm.isConnecting" ng-show="!Auth.isLogged()">
-  {{ vm.isConnecting ? 'connexion...' : 'connexion Facebook' }}
+  <i class="icon-facebook"></i>
+  <span>
+    {{ vm.isConnecting ? 'connexion...' : 'connexion Facebook' }}
+  </span>
 </button>
