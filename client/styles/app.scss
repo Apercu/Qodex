@@ -4,6 +4,8 @@
 @import "top-bar";
 @import "full-pane";
 @import "button";
+@import "choose-block";
+@import "quizz";
 
 * {
   box-sizing: border-box;
@@ -106,32 +108,6 @@ hr {
 
 }
 
-.quizz-item {
-  padding: 10px;
-  background-color: greenyellow;
-  & + .quizz-item {
-    margin-top: 5px;
-  }
-}
-
-.quizz-tag {
-  padding: 2px 5px;
-  background-color: rgba(black, .3);
-}
-
-.quizz-room {
-  border: 1px solid black;
-  margin: 0 10px;
-  cursor: pointer;
-  & + .quizz-room {
-    margin-top: 5px;
-  }
-  &:hover {
-    background-color: #0067ce;
-    color: white;
-  }
-}
-
 .view {
   &.ng-enter {
     -webkit-transition:100ms ease-out all;
@@ -160,4 +136,12 @@ hr {
 .hello-icon {
   height: 259px;
   display: inline-block;
+}
+
+.dotted-title {
+  font-size: 1.5em;
+  margin-bottom: 1.5em;
+  > span {
+    color: $c-dark;
+  }
 }

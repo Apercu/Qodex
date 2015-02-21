@@ -1,0 +1,30 @@
+.quizz-item {
+  border: 1px solid rgba(black, .1);
+  padding: 1em;
+  cursor: pointer;
+  &:hover {
+    background: rgba(black, .1);
+  }
+  h1 {
+    font-weight: bold;
+  }
+}
+
+.quizz-tag {
+  padding: 2px 5px;
+  background-color: darken(white, 20);
+  font-size: 13px;
+}
+
+.quizz-room {
+  border: 1px solid black;
+  margin: 0 10px;
+  cursor: pointer;
+  & + .quizz-room {
+    margin-top: 5px;
+  }
+  &:hover {
+    background-color: #0067ce;
+    color: white;
+  }
+}

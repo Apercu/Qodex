@@ -1,14 +1,65 @@
-<div class="row">
+<div class="row flow">
   <div class="all-full">
 
     <div class="actions-bloc flow">
       <a class="btn btn-important" href="/create">Créer un nouveau quizz</a>
     </div>
 
-    <div class="quizz-list flow">
-      <div ng-click="vm.switchToQuizz(quizz.slug)" ng-repeat="quizz in vm.list" class="quizz-item">
-        <h1>{{ quizz.name }}</h1>
-        <span ng-if="quizz.tags" ng-repeat="tag in quizz.tags" class="quizz-tag">{{ tag }}</span>
+  </div>
+</div>
+<div class="row flow">
+  <div class="desktop-half tablet-half mobile-full">
+    <div class="choose-block solo">
+      <div class="content">
+
+        <div class="code">
+          &lt;&frasl;solo&gt;
+        </div>
+
+        <img src="assets/images/perso-alone.svg" alt=""/>
+
+        <div class="code bottom">
+          &lt;&frasl;entraine-toi&gt;
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="desktop-half tablet-half mobile-full">
+    <div class="choose-block multi">
+      <div class="content">
+
+        <div class="code">
+          &lt;&frasl;multijoueur&gt;
+        </div>
+
+        <img src="assets/images/perso-together.svg" alt=""/>
+
+        <div class="code bottom">
+          &lt;&frasl;affronte tes amis&gt;
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row flow">
+  <div class="all-full">
+
+    <h2 class="dotted-title">
+      <span># Les derniers quizz #</span>
+    </h2>
+
+    <div class="quizz-list">
+      <div class="row">
+
+        <div ng-click="vm.switchToQuizz(quizz.slug)"
+             ng-repeat="quizz in vm.list"
+             class="quizz-item desktop-4 tablet-3 mobile-full">
+          <h1>{{ quizz.name }}</h1>
+          <span ng-if="quizz.tags" ng-repeat="tag in quizz.tags" class="quizz-tag">{{ tag }}</span>
+        </div>
+
       </div>
     </div>
 

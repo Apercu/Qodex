@@ -1,0 +1,67 @@
+@import "variables";
+
+.choose-block {
+  border: 1px solid;
+  padding: 5px;
+  cursor: pointer;
+
+  &:hover {
+    img {
+      transform: scale(1.5);
+    }
+    .bottom {
+      transform: translateY(-50px);
+    }
+  }
+
+  .content {
+    height: 500px;
+    padding: 1em 0 0 1em;
+    position: relative;
+
+    img {
+      display: block;
+      margin: 100px auto 0 auto;
+      transition: .2s ease-in-out transform;
+    }
+
+    .bottom {
+      position: absolute;
+      bottom: 1em;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 18px;
+      transition: .2s ease-in-out transform;
+      transition-delay: .1s;
+    }
+
+  }
+
+  &.multi {
+    border-color: $blue1;
+    .content {
+      background: $blue1;
+      .code {
+        color: $yellow1;
+      }
+      .bottom {
+        color: white;
+      }
+    }
+  }
+
+  &.solo {
+    border-color: darken($yellow1, 30);
+    .content {
+      background: $yellow1;
+      .code {
+        color: $blue1;
+      }
+      .bottom {
+        color: black;
+      }
+    }
+  }
+
+}
