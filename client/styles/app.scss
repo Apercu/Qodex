@@ -67,3 +67,15 @@ button {
   padding: 2px 5px;
   background-color: rgba(black, .3);
 }
+
+.view {
+  &.ng-enter {
+    -webkit-transition:100ms ease-out all;
+    transition:100ms ease-out opacity;
+    opacity:0;
+  }
+  &.ng-enter.ng-enter-active {
+    top:0;
+    opacity:1;
+  }
+}
