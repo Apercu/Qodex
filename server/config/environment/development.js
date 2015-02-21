@@ -8,6 +8,6 @@ module.exports = {
   },
 
   mongo: {
-    uri: 'mongodb://localhost/qodex-dev'
+    uri: 'mongodb://zavatta:zavattapass@ds039351.mongolab.com:39351/qodex'
   }
 };
