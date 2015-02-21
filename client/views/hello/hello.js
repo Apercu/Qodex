@@ -7,6 +7,11 @@ angular.module('qodex')
         templateUrl: 'views/hello/hello.html',
         controller: 'HelloCtrl',
         authenticate: true,
+        resolve: {
+          user: function (Auth) {
+            return Auth.getUser();
+          }
+        },
         controllerAs: 'vm'
       });
   });

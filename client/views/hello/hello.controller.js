@@ -6,5 +6,5 @@ angular.module('qodex')
     window.location.hash = "";
     $timeout(function () {
       $location.path('/');
-    }, 2000);
+    }, 2500);
   });
