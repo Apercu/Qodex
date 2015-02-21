@@ -41,7 +41,6 @@ button {
 }
 
 .login-bloc {
-
   text-align: center;
 
   > header {
@@ -51,5 +50,18 @@ button {
   .fb-connect {
     margin: 0 auto;
   }
+}
 
+.quizz-item {
+  padding: 10px;
+  background-color: greenyellow;
+  margin: 0 20px;
+  & + .quizz-item {
+    margin-top: 5px;
+  }
+}
+
+.quizz-tag {
+  padding: 2px 5px;
+  background-color: rgba(black, .3);
 }

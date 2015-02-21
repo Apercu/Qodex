@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var QuizzSchema = new Schema({
-  name: { type: String, default: 'Some room' },
+  name: { type: String, default: 'Some quizz' },
+  slug: { type: String, default: 'some-quizz' },
   tags: { type: [String], default: [] },
   questions: {
     type: [

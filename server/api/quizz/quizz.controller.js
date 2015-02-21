@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var slug = require('slug');
 var Quizz = require('./quizz.model');
 
 function handleError(res, err) {
@@ -14,7 +15,7 @@ function handleError(res, err) {
  * @param res
  */
 exports.index = function (req, res) {
-  Quizz.find(function (err, quizzs) {
+  Quizz.find({}, { 'questions': 0 }).exec(function (err, quizzs) {
     if (err) { return handleError(res, err); }
     return res.status(200).json(quizzs);
   });
@@ -41,6 +42,7 @@ exports.show = function (req, res) {
  * @param res
  */
 exports.create = function (req, res) {
+  req.body.slug = slug(req.body.name);
   Quizz.create(req.body, function (err, quizz) {
     if (err) { return handleError(res, err); }
     return res.status(201).json(quizz);

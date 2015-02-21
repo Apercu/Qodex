@@ -1,2 +1,7 @@
 <div>
+  <h1>List</h1>
+  <div ng-click="vm.switchToQuizz(quizz.slug)" ng-repeat="quizz in vm.list" class="quizz-item">
+    <h1>{{ quizz.name }}</h1>
+    <span ng-if="quizz.tags" ng-repeat="tag in quizz.tags" class="quizz-tag">{{ tag }}</span>
+  </div>
 </div>
