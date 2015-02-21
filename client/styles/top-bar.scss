@@ -42,9 +42,16 @@
     top: 60px;
     text-align: right;
     > li {
+      display: block;
       a {
+        text-decoration: none;
         display: block;
+        width: 100%;
         padding: .5em;
+        &:hover {
+          background: $c-dark;
+          color: white;
+        }
       }
     }
   }
