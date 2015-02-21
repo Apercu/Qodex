@@ -91,9 +91,9 @@ exports.destroy = function (req, res) {
  * @param res
  */
 exports.routeExists = function (req, res) {
-  Quizz.findOne({ slug: req.params.slug }, function (err, quizz) {
+  Quizz.findOne({ slug: req.params.slug }, { 'questions': 0 }, function (err, quizz) {
     if (err) { return handleError(res, err); }
     if (!quizz) { return res.status(404).end(); }
-    res.status(200).end();
+    res.status(200).json(quizz);
   });
 };

@@ -76,6 +76,19 @@ button {
   background-color: rgba(black, .3);
 }
 
+.quizz-room {
+  border: 1px solid black;
+  margin: 0 10px;
+  cursor: pointer;
+  & + .quizz-room {
+    margin-top: 5px;
+  }
+  &:hover {
+    background-color: #0067ce;
+    color: white;
+  }
+}
+
 .view {
   &.ng-enter {
     -webkit-transition:100ms ease-out all;

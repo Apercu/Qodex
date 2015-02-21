@@ -9,7 +9,7 @@ angular.module('qodex')
         controllerAs: 'vm',
         authenticate: true,
         resolve: {
-          check: function ($q, $http, $route, $location) {
+          quizz: function ($q, $http, $route, $location) {
             var def = $q.defer();
             $http.get('/api/quizzs/check/' + $route.current.params.id).then(function (res) {
               def.resolve(res.data);

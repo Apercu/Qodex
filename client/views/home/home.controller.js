@@ -1,15 +1,9 @@
 'use strict';
 
 angular.module('qodex')
-  .controller('HomeCtrl', function ($scope, $location, Socket, list) {
+  .controller('HomeCtrl', function ($scope, $location, list) {
 
     var vm = this;
-
-    Socket.emit('listRooms');
-
-    Socket.on('listRooms', function (data) {
-      console.log(data);
-    });
 
     angular.extend(vm, {
       name: 'HomeCtrl',
@@ -18,7 +12,5 @@ angular.module('qodex')
         $location.path('/quizz/' + slug);
       }
     });
-
-    $scope.$on('destroy', Socket.clean);
 
   });

@@ -1,5 +1,7 @@
 'use strict';
 
+var slug = require('slug');
+
 var rooms = [];
 
 module.exports = function (io) {
@@ -17,11 +19,12 @@ module.exports = function (io) {
     ** Create a new room for a quizz
     */
     socket.on('createRoom', function (data) {
-      var gameId = Math.random() * 1000;
-      rooms.push({ id: gameId, name: data.name });
+      var gameId = slug(data.name);
+      rooms.push({ id: gameId, name: data.name, quizz: data.quizzId, players: 0 });
 
-      socket.broadcast.emit('newRoom', { id: gameId });
       socket.join(gameId);
+      socket.emit('roomCreated', { id: gameId });
+      socket.broadcast.emit('newRoom', { id: gameId });
     });
 
     /*
@@ -30,6 +33,7 @@ module.exports = function (io) {
     socket.on('join', function (data) {
       socket.join(data.room);
       socket.broadcast.to(data.room).emit({ type: 'join', user: data.user });
+      rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)].players++;
     });
 
     /*
@@ -38,6 +42,7 @@ module.exports = function (io) {
     socket.on('leave', function (data) {
       socket.broadcast.to(data.room).emit({ type: 'leave', user: data.user });
       socket.leave(data.room);
+      rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)].players--;
     });
 
 
