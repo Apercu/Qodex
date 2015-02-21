@@ -27,19 +27,19 @@
   </head>
   <body class="gridlock">
 
-    <nav class="top-bar">
+    <nav class="top-bar" ng-if="Auth.isLogged()">
       <ul>
-        <li ng-if="Auth.isLogged()">
+        <li>
           <a href="/">
             <img class="logo-link" src="assets/images/sigle-qodex.svg" alt=""/>
           </a>
         </li>
-        <li ng-if="Auth.isLogged()">
+        <li>
           <a href="/admin">admin</a>
         </li>
       </ul>
-      <div class="side-user" ng-if="Auth.isLogged()">
-        <img ng-src="http://graph.facebook.com/{{ Auth.getUser().facebook.id }}/picture?type=square"/>
+      <div class="nav-right">
+        <side-user></side-user>
       </div>
     </nav>
 
@@ -61,6 +61,7 @@
       <!-- inject:js -->
       <script src="app.js"></script>
       <script src="directives/fb-connect/fb-connect.directive.js"></script>
+      <script src="directives/side-user/side-user.directive.js"></script>
       <script src="services/auth/auth.js"></script>
       <script src="services/socket/socket.mock.js"></script>
       <script src="services/socket/socket.service.js"></script>
