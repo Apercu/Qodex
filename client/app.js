@@ -46,14 +46,9 @@ angular.module('qodex', [
   .run(function ($location, $rootScope, Auth) {
 
     $rootScope.$on('$routeChangeStart', function (scope, route) {
-
-      if (route.authenticate) {
-        Auth.isLoggedAsync()
-          .catch(function () {
-            $location.path('/login');
-          });
+      if (route.authenticate && !Auth.hasCookie()) {
+        $location.path('/login');
       }
-
     });
 
     $rootScope.Auth = Auth;

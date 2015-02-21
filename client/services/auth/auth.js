@@ -74,18 +74,10 @@ angular.module('qodex')
     };
 
     /**
-     * Check if user is logged asynchronously
+     * Check if token present
      */
-    this.isLoggedAsync = function () {
-      var def = $q.defer();
-      $http.get('/api/users/me')
-        .then(function () {
-          def.resolve();
-        })
-        .catch(function () {
-          def.reject();
-        });
-      return def.promise;
+    this.hasCookie = function () {
+      return $cookieStore.get('token');
     };
 
     /**

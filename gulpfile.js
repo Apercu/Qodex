@@ -267,15 +267,21 @@ gulp.task('cssmin', function () {
 });
 
 gulp.task('scripts', function () {
-  var tpl = gulp.src('client/views/**/*.html')
+  var tplviews = gulp.src('client/views/**/*.html')
     .pipe($.angularTemplatecache({
       root: 'views',
       module: 'qodex'
     }));
 
+  var tpldirectives = gulp.src('client/directives/**/*.html')
+    .pipe($.angularTemplatecache({
+      root: 'directives',
+      module: 'qodex'
+    }));
+
   var app = gulp.src('dist/client/app.js');
 
-  return sq({ objectMode: true }, app, tpl)
+  return sq({ objectMode: true }, app, tplviews, tpldirectives)
     .pipe($.concat('app.js'))
     .pipe($.ngAnnotate())
     .pipe($.uglify())
