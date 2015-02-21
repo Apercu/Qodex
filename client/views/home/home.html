@@ -1,7 +1,16 @@
-<div>
-  <h1>List</h1>
-  <div ng-click="vm.switchToQuizz(quizz.slug)" ng-repeat="quizz in vm.list" class="quizz-item">
-    <h1>{{ quizz.name }}</h1>
-    <span ng-if="quizz.tags" ng-repeat="tag in quizz.tags" class="quizz-tag">{{ tag }}</span>
+<div class="row">
+  <div class="all-full">
+
+    <div class="actions-bloc flow">
+      <a class="btn btn-important" href="/create">Créer un nouveau quizz</a>
+    </div>
+
+    <div class="quizz-list flow">
+      <div ng-click="vm.switchToQuizz(quizz.slug)" ng-repeat="quizz in vm.list" class="quizz-item">
+        <h1>{{ quizz.name }}</h1>
+        <span ng-if="quizz.tags" ng-repeat="tag in quizz.tags" class="quizz-tag">{{ tag }}</span>
+      </div>
+    </div>
+
   </div>
 </div>

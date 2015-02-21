@@ -2,6 +2,7 @@
 @import "variables";
 
 @import "top-bar";
+@import "button";
 
 * {
   box-sizing: border-box;
@@ -11,6 +12,10 @@ body {
   font-family: 'normetica', monospace;
   font-size: 16px;
   line-height: 24px;
+}
+
+.flow + .flow {
+  margin-top: 2em;
 }
 
 button {
@@ -61,7 +66,6 @@ button {
 .quizz-item {
   padding: 10px;
   background-color: greenyellow;
-  margin: 0 20px;
   & + .quizz-item {
     margin-top: 5px;
   }

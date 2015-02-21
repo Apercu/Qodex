@@ -3,7 +3,7 @@
 angular.module('qodex')
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/admin', {
+      .when('/create', {
         templateUrl: 'views/admin/admin.html',
         controller: 'AdminCtrl',
         controllerAs: 'vm',

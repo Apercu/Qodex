@@ -3,8 +3,18 @@
 .top-bar {
   display: flex;
   padding: 1em;
+  margin-bottom: 1em;
+  ul {
+    li {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
   .nav-right {
     margin-left: auto;
+  }
+  .logo {
+    margin-right: 1em;
   }
 }
 

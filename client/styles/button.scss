@@ -1,0 +1,13 @@
+@import "variables";
+
+.btn {
+  text-decoration: none;
+  background: transparent;
+  padding: .5em;
+  color: $c-dark;
+  border: 1px solid rgba($c-dark, .4);
+  &:hover {
+    background: $c-dark;
+    color: white;
+  }
+}
