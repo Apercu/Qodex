@@ -57,5 +57,8 @@ angular.module('qodex', [
     });
 
     $rootScope.Auth = Auth;
+    $rootScope.ui = {
+      isLogging: false
+    };
 
   });

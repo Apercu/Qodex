@@ -3,11 +3,12 @@
 
     <section class="login-bloc">
       <header>
-        <img class="logo" src="assets/images/sigle-qodex.svg" alt=""/>
+        <img class="logo" src="assets/images/sigle-qodex.svg" alt="" fade-when="ui.isLogging"/>
       </header>
 
-      <div class="code">
+      <div class="code" fade-when="ui.isLogging">
         &lt;&frasl;hello!&gt;
+        {{ ui.isLogging}}
       </div>
 
       <fb-connect></fb-connect>
@@ -18,7 +19,7 @@
         login en tant qu'invité
       </button>
 
-      <div class="sub-logo">
+      <div class="sub-logo" fade-when="ui.isLogging">
         <img width="150" class="sublogo" src="assets/images/logo-qodex.svg" alt=""/>
         <div class="text-small">*the code dexterity</div>
         <p>par</p>
