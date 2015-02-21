@@ -5,6 +5,7 @@ var config = require('./config/environment');
 module.exports = function (app) {
 
   // API
+  app.use('/api/quizzs', require('./api/quizz'));
   app.use('/api/users', require('./api/user'));
 
   // Auth

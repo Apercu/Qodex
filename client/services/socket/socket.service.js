@@ -1,12 +1,11 @@
 'use strict';
 
+
 angular.module('qodex')
   .factory('Socket', function (socketFactory) {
 
     var ioSocket = io('', {
       path: '/socket.io'
-      //, query: 'token=toto'
-      // TODO implement with passport and socket jwt
     });
 
     var socket = socketFactory({ ioSocket: ioSocket });

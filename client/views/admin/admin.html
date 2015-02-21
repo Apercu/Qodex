@@ -1,0 +1,46 @@
+<form ng-submit="vm.createQuizz()">
+
+  <h3>Name</h3>
+  <input type="text" placeholder="name" ng-model="vm.newQuizz.name">
+
+  <hr>
+
+  <h3>Tags</h3>
+  <ul>
+    <li ng-repeat="tag in vm.newQuizz.tags">{{ tag }}</li>
+  </ul>
+  <input type="text" ng-model="vm.newTag">
+  <input type="button" ng-click="vm.addTag()" value="add">
+
+  <hr>
+
+  <h3>Questions</h3>
+  <div ng-repeat="question in vm.newQuizz.questions">
+
+    <h6>{{ question.text }}</h6>
+    <ul>
+      <li ng-repeat="question in vm.newQuizz.questions">{{ question }}</li>
+    </ul>
+
+  </div>
+
+  <textarea ng-model="vm.newQuestion.text" placeholder="Markdown"></textarea>
+
+  <ul>
+    <li ng-repeat="answer in vm.newQuestion.answers">{{ answer.text }} ({{ answer.isOk }})</li>
+  </ul>
+
+  <div>
+    <input type="text" ng-model="vm.newAnswer.text" placeholder="answer">
+    isOk: <input type="checkbox" ng-model="vm.newAnswer.isOk">
+    <input type="button" ng-click="vm.addAnswer()" value="add answer">
+  </div>
+
+  <input type="button" ng-click="vm.addQuestion()" value="add question">
+
+  <hr>
+
+  <input type="submit">
+
+
+</form>
