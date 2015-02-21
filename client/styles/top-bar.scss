@@ -1,0 +1,21 @@
+@import "variables";
+
+.top-bar {
+  display: flex;
+  padding: 1em;
+}
+
+.side-user {
+  margin-left: auto;
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: rgba(black, .6) 0 2px 3px;
+  }
+}
+
+.logo-link {
+  height: 50px;
+}
