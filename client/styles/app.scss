@@ -12,6 +12,10 @@ body {
   font-family: 'normetica', monospace;
   font-size: 16px;
   line-height: 24px;
+  transition: 500ms ease-out background-color;
+  background-color: $yellow2;
+  &.main {
+  }
 }
 
 .flow + .flow {
@@ -31,40 +35,73 @@ button {
   }
 }
 
+hr {
+  margin: 3em auto;
+  border: none;
+  border-bottom: 4px dotted rgba(black, .5);
+}
+
+.code {
+  color: rgba(black, .7);
+  font-size: 28px;
+}
+
 .fb-connect {
-  display: flex;
+  display: table;
   align-items: center;
   justify-content: center;
-  background: $c-fb;
+  background: $blue1;
+  padding: 12px 18px;
   color: #ffffff;
   border: none;
-  border-radius: 4px;
-  font-size: 13px;
+  border-radius: 8px;
+  font-size: 24px;
   &:disabled {
     transition: transform 100ms ease-out;
     background: $c-fb-light;
     transform: scale(.9);
   }
   > i {
-    display: block;
-    margin-right: .5em;
-    margin-top: 5px;
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 20px;
+    font-size: 50px;
   }
   > span {
-    display: block;
+    display: table-cell;
+    vertical-align: middle;
   }
 }
 
 .login-bloc {
   text-align: center;
 
+  hr {
+    width: 50%;
+  }
   > header {
-    padding: 60px 0;
+    padding: 130px 0 60px 0;
+  }
+  .code {
+    margin-bottom: 1.5em;
   }
 
   .fb-connect {
     margin: 0 auto;
   }
+
+  .logo {
+    height: 300px;
+  }
+
+  .sub-logo {
+    margin-top: 8em;
+  }
+
+  p {
+    margin-top: 1.5em;
+  }
+
 }
 
 .quizz-item {
@@ -103,4 +140,8 @@ button {
     top:0;
     opacity:1;
   }
+}
+
+.text-small {
+  font-size: 13px;
 }
