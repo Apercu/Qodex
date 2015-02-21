@@ -25,10 +25,12 @@ angular.module('qodex')
     });
 
     Socket.on('userJoin', function (data) {
+      vm.nbPlayers = data.nbPlayers;
       vm.messages.push({ txt: data.user + ' has joined.', user: 'system' });
     });
 
     Socket.on('userLeave', function (data) {
+      vm.nbPlayers--;
       vm.messages.push({ txt: data.user + ' has leaved.', user: 'system' });
     });
 
@@ -37,7 +39,7 @@ angular.module('qodex')
     });
 
     $scope.$on('$destroy', function () {
-      Socket.emit('leave', { room: vm.name });
+      Socket.emit('leave', { room: vm.name, user: vm.username });
       Socket.clean();
     });
 

@@ -38,11 +38,12 @@ module.exports = function (io) {
     socket.on('join', function (data) {
       if (!data.room) { return; }
       socket.join(data.room);
-      socket.broadcast.to(data.room).emit('userJoin', { type: 'join', user: data.user });
 
       var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
+
       if (room) {
         room.players++;
+        io.sockets.in(data.room).emit('userJoin', { type: 'join', user: data.user, nbPlayers: room.players });
       }
     });
 
@@ -54,9 +55,7 @@ module.exports = function (io) {
       socket.leave(data.room);
 
       var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
-      console.log(room)
       if (room) {
-        console.log(room)
         room.players--;
         if (room.players === 0) {
           rooms.splice(rooms.map(function (e) { return e.id; }).indexOf(room.id), 1);
