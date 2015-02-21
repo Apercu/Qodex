@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="qodex">
+  <head>
+
+    <base href="/">
+
+    <title>qodex</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+    <!-- build:css app.css -->
+      <!-- bower:css -->
+      <!-- endinject -->
+
+      <!-- inject:css -->
+      <!-- endinject -->
+    <!-- endbuild -->
+
+  </head>
+  <body>
+
+    <strong>qodex</strong>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="/">home</a>
+        </li>
+        <li ng-if="!Auth.isLogged()">
+          <a href="/signup">signup</a>
+        </li>
+        <li ng-if="!Auth.isLogged()">
+          <a href="/login">login</a>
+        </li>
+        <li ng-if="Auth.isLogged()">
+          <a href="" ng-click="Auth.logout()">logout</a>
+        </li>
+      </ul>
+    </nav>
+
+    <pre>logged in: {{ Auth.isLogged() }}</pre>
+
+    <div ng-view></div>
+
+    <script src="socket.io/socket.io.js"></script>
+
+    <!-- build:js app.js -->
+      <!-- bower:js -->
+      <!-- endinject -->
+
+      <!-- inject:js -->
+      <!-- endinject -->
+    <!-- endbuild -->
+
+    <script src="http://localhost:35729/livereload.js?snipver=1"></script>
+
+  </body>
+</html>
