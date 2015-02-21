@@ -43,7 +43,7 @@ var auth = module.exports = {
     if (!req.user) return res.status(404).json({ message: 'Something went wrong, please try again.'});
     var token = auth.signToken(req.user._id, req.user.role);
     res.cookie('token', JSON.stringify(token));
-    res.redirect('/');
+    res.redirect('/hello');
   }
 
 };
