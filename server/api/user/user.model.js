@@ -7,7 +7,8 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
   email: String,
   passwordHash: String,
-  salt: String
+  salt: String,
+  facebook: {}
 });
 
 /**
