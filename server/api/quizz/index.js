@@ -6,6 +6,7 @@ var controller = require('./quizz.controller');
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
+router.get('/check/:slug', controller.routeExists);
 
 router.post('/', controller.create);
 

@@ -18,8 +18,8 @@ angular.module('qodex')
 
     return {
 
-      emit: function (str) {
-        socket.emit(str);
+      emit: function (str, data) {
+        socket.emit(str, data);
       },
 
       on: function (pattern, cb) {

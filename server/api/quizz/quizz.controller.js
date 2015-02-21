@@ -84,3 +84,16 @@ exports.destroy = function (req, res) {
     });
   });
 };
+
+/**
+ * Check for an existing quiz slug
+ * @param req
+ * @param res
+ */
+exports.routeExists = function (req, res) {
+  Quizz.findOne({ slug: req.params.slug }, function (err, quizz) {
+    if (err) { return handleError(res, err); }
+    if (!quizz) { return res.status(404).end(); }
+    res.status(200).end();
+  });
+};
