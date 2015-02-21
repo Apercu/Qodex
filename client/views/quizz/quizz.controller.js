@@ -27,7 +27,7 @@ angular.module('qodex')
         Socket.on('roomCreated', function (data) {
           if (data.err === 'already') {
             vm.name = '';
-            alert('This name already exits, please pick another one.');
+            alert('Ce nom existe deja, veuillez en choisir un autre.');
           } else {
             $location.path('/rooms/' + data.id);
           }
@@ -45,7 +45,7 @@ angular.module('qodex')
     });
 
     Socket.on('removeRoom', function (data) {
-      var index = vm.rooms.map(function (e) { return e.id; });
+      var index = vm.rooms.map(function (e) { return e.id; }).indexOf(data.id);
       if (index !== -1) {
         vm.rooms.splice(index, 1);
       }

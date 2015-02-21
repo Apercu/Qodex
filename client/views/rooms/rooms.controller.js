@@ -33,7 +33,7 @@ angular.module('qodex')
       if (vm.nbPlayers === 1) {
         vm.isLead = true;
       }
-      vm.messages.push({ txt: data.user + ' has joined.', user: 'system' });
+      vm.messages.push({ txt: data.user + ' a rejoint.', user: 'system' });
     });
 
     Socket.on('userLeave', function (data) {
@@ -41,7 +41,7 @@ angular.module('qodex')
       if (vm.nbPlayers === 1) {
         vm.isLead = true;
       }
-      vm.messages.push({ txt: data.user + ' has leaved.', user: 'system' });
+      vm.messages.push({ txt: data.user + ' a quitte.', user: 'system' });
     });
 
     Socket.on('newMessage', function (data) {
