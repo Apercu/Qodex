@@ -1,0 +1,27 @@
+@import "variables";
+
+.full-pane {
+  z-index: 99;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+
+  .full-pane--container {
+    display: table;
+    height: 100%;
+    width: 100%;
+  }
+
+  .full-pane--content {
+    display: table-cell;
+    background: $yellow2;
+    vertical-align: middle;
+    text-align: center;
+    color: $blue2;
+    font-size: 60px;
+    line-height: 1.5em;
+  }
+
+}

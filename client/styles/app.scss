@@ -2,6 +2,7 @@
 @import "variables";
 
 @import "top-bar";
+@import "full-pane";
 @import "button";
 
 * {
@@ -145,4 +146,8 @@ hr {
 
 .text-small {
   font-size: 13px;
+}
+
+.giant-icon {
+  font-size: 250px;
 }
