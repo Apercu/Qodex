@@ -134,7 +134,7 @@
     <!-- ========================================================================================= -->
 
     <ul class="players-list">
-      <li class="player" ng-repeat="player in vm.players | orderBy: 'points'">
+      <li class="player" ng-repeat="player in vm.players | orderBy: '-points'">
         <div class="has-answered">
           <span class="tick"
                 ng-class="{
