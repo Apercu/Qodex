@@ -19,6 +19,9 @@ angular.module('qodex')
                 $location.path('/');
               });
             return def.promise;
+          },
+          user: function (Auth) {
+            return Auth.getUser().$promise;
           }
         }
       });

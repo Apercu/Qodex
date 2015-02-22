@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('qodex')
-  .controller('QuizzCtrl', function ($scope, $location, quizz, Socket) {
+  .controller('QuizzCtrl', function ($scope, $location, quizz, Socket, user) {
 
     var vm = this;
 
@@ -19,7 +19,7 @@ angular.module('qodex')
     });
 
     angular.extend(vm, {
-      name: 'aoeu' + new Date().getTime(),
+      name: 'Partie de ' + user.facebook.first_name + ' ' + user.facebook.last_name,
       quizz: quizz,
       rooms: [],
       createRoom: function () {

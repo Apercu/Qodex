@@ -56,6 +56,14 @@ hr {
 .code {
   color: rgba(black, .7);
   font-size: 28px;
+  &.soft {
+    color: rgba(black, .2);
+    font-size: 16px;
+  }
+}
+
+.blue {
+  color: $blue2;
 }
 
 .fb-connect {
@@ -197,4 +205,12 @@ hr {
     padding: 1em;
     border: 1px solid rgba(black, .5);
   }
+}
+
+.quizz-master {
+  font-size: 50px;
+  line-height: 80px;
+  margin-bottom: 30px;
+  color: $blue2;
+  text-shadow: rgba(black, .2) 0 2px 1px;
 }
