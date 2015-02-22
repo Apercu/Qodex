@@ -1,0 +1,93 @@
+@import "variables";
+
+.profile-header {
+
+  margin-bottom: 2em;
+
+  .profile-picture {
+    img {
+      width: 80%;
+      max-width: 200px;
+      display: block;
+      margin: 0 auto 0 0;
+    }
+  }
+
+  h1 {
+    color: $blue2;
+    font-size: 36px;
+    line-height: 2em;
+  }
+
+}
+
+.profile-classement {
+  > span {
+    background: $blue2;
+    color: $yellow1;
+    font-size: 30px;
+    padding: .5em .25em;
+    border-radius: 6px;
+  }
+  margin-bottom: 2em;
+}
+
+.profile-badges {
+  .profile-badge {
+    margin-bottom: 1em;
+    span {
+      color: $blue2;
+      background: $yellow1;
+      padding: .5em .5em;
+    }
+  }
+}
+
+.profile-quizzs {
+  padding: 1em;
+  border: 2px dashed $blue2;
+  color: $blue2;
+}
+
+.profile-success {
+  padding: 1em;
+  background: $yellow1;
+  color: $blue2;
+  border-radius: 8px;
+  > header {
+    font-size: 20px;
+    margin-bottom: 1em;
+    .count {
+      float: right;
+    }
+  }
+  > ul {
+    margin-bottom: 1em;
+    > li {
+      display: inline-block;
+      i {
+        font-size: 56px;
+        border: 3px solid $blue2;
+      }
+    }
+  }
+}
+
+.profile-friends {
+  background: $blue2;
+  padding: 5px;
+  border-radius: 5px;
+  .friends-block {
+    border-radius: 5px;
+    background: darken(white, 10);
+    color: $blue2;
+    header {
+      border-radius: 5px;
+      padding: .5em;
+      background: $yellow2;
+    }
+    ul {
+      padding: .5em;
+    }
+  }
+}

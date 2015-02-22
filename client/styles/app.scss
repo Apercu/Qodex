@@ -6,6 +6,7 @@
 @import "button";
 @import "choose-block";
 @import "quizz";
+@import "profile";
 @import "chat";
 @import "room";
 
@@ -164,4 +165,8 @@ hr {
   padding: 1em;
   border: 1px solid rgba(white, .5);
   box-shadow: rgba(black, .3) 0 2px 3px;
+}
+
+.center {
+  text-align: center;
 }

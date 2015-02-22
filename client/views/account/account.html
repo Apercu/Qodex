@@ -1,3 +1,78 @@
-<div>
-  {{ vm.name }}
+<div class="row">
+  <div class="desktop-3 tablet-2 mobile-full">
+
+    <header class="profile-header">
+      <div class="profile-picture">
+        <img ng-src="http://graph.facebook.com/{{ Auth.getUser().facebook.id }}/picture?type=large" alt=""/>
+      </div>
+      <h1>Coddy420</h1>
+    </header>
+
+    <section class="profile-classement">
+      <span>15eme/2345</span>
+    </section>
+
+    <ul class="profile-badges">
+      <li class="profile-badge"><span>"CodeMaster"</span></li>
+      <li class="profile-badge"><span>"Helpfull"</span></li>
+      <li class="profile-badge"><span>"FastWriter"</span></li>
+    </ul>
+
+  </div>
+  <div class="desktop-7 tablet-4 mobile-full">
+
+    <div class="profile-quizzs flow">
+      <p class="flow">Derniers quizzs validés:</p>
+      <ul class="flow">
+        <li>* CSS level 9</li>
+        <li>* HTML level 12</li>
+        <li>* Python level 6</li>
+        <li>* C++ level 8</li>
+        <li>* Javascript level 7</li>
+        <li>* PHP level 4</li>
+      </ul>
+      <p class="flow">
+        <a href="">voir plus</a>
+      </p>
+    </div>
+
+    <div class="profile-success flow">
+      <header>
+        <div class="count">8/50</div>
+        Succes
+      </header>
+      <ul>
+        <li><i class="icon-smile"></i></li>
+        <li><i class="icon-smile"></i></li>
+        <li><i class="icon-smile"></i></li>
+        <li><i class="icon-smile"></i></li>
+      </ul>
+      <p class="flow">
+        <a href="">voir plus</a>
+      </p>
+    </div>
+
+  </div>
+  <div class="desktop-2 tablet-full mobile-full">
+
+    <div class="profile-friends flow">
+      <div class="friends-block">
+        <header>
+          Amis
+        </header>
+        <ul>
+          <li>Jeano9</li>
+          <li>Deuchy34</li>
+          <li>ZlatanB</li>
+          <li>Coolding77</li>
+          <li>Helper</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flow">
+      <a href="">Contact</a>
+    </div>
+
+  </div>
 </div>
