@@ -1,70 +1,82 @@
-<div class="row flow">
+<div class="row">
   <div class="all-full">
 
     <h1 class="room-title">
       {{ vm.name }}
     </h1>
 
-    <div class="explain-block">
-
-      <h1>Bienvenue dans le salon {{ vm.name }}, {{ vm.username }} !</h1>
-      <p class="flow">
-        Il y a actuellement
-        <ng-pluralize count="vm.nbPlayers" when="{ '1': '1 joueur', 'other': '{} joueurs'  }"></ng-pluralize>.
-      </p>
-
-      <div class="flow" ng-if="!vm.gameStarted">
-        <p class="flow" ng-if="vm.isLead">
-          Quand vous etes prets, vous pouvez lancer le test pour tous les membres du salon.
-        </p>
-        <button class="btn btn-plain flow" ng-click="vm.launch()">Lancer</button>
-      </div>
-
-    </div>
-
   </div>
 </div>
+
 <div class="row flow">
+  <div class="desktop-9 tablet-4 mobile-full">
 
-  <div class="all-full">
+    <div class="row flow">
+      <div class="all-full">
 
-    <div class="chat" ng-if="!vm.gameStarted || vm.gameFinished">
+        <div class="explain-block">
 
-      <ul class="flow chat-messages">
-        <li ng-repeat="msg in vm.messages">
-          <em ng-if="msg.user === 'system'">{{ msg.txt }}</em>
-          <span ng-if="msg.user !== 'system'">{{ msg.user }}: {{ msg.txt }}</span>
-        </li>
-      </ul>
+          <h1>Bienvenue dans le salon {{ vm.name }}, {{ vm.username }} !</h1>
+          <p class="flow">
+            Il y a actuellement
+            <ng-pluralize count="vm.nbPlayers" when="{ '1': '1 joueur', 'other': '{} joueurs'  }"></ng-pluralize>.
+          </p>
 
-      <form ng-submit="vm.sendMessage()">
-
-        <div class="form-message">
-          <div class="form-message--text">
-            <input type="text" ng-model="vm.newMessage" placeholder="Ecris ton petit message ici...">
+          <div class="flow" ng-if="!vm.gameStarted">
+            <p class="flow" ng-if="vm.isLead">
+              Quand vous etes prets, vous pouvez lancer le test pour tous les membres du salon.
+            </p>
+            <button class="btn btn-plain flow" ng-click="vm.launch()">Lancer</button>
           </div>
-          <div class="form-message--submit">
-            <button class="btn btn-plain">send message</button>
-          </div>
+
         </div>
 
-      </form>
+      </div>
     </div>
+    <div class="row flow">
 
-    <div class="quizz" ng-if="vm.gameStarted && !vm.gameFinished">
+      <div class="all-full">
 
-      <div class="timer-bar">
-        <div class="timer-bar--progress" style="width: {{ ((vm.timer) / (vm.currentQuestion.time)) * 100 }}%"></div>
+        <div class="chat" ng-if="!vm.gameStarted || vm.gameFinished">
+
+          <ul class="flow chat-messages">
+            <li ng-repeat="msg in vm.messages">
+              <em ng-if="msg.user === 'system'">{{ msg.txt }}</em>
+              <span ng-if="msg.user !== 'system'">{{ msg.user }}: {{ msg.txt }}</span>
+            </li>
+          </ul>
+
+          <form ng-submit="vm.sendMessage()">
+
+            <div class="form-message">
+              <div class="form-message--text">
+                <input type="text" ng-model="vm.newMessage" placeholder="Ecris ton petit message ici...">
+              </div>
+              <div class="form-message--submit">
+                <button class="btn btn-plain">send message</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="quizz" ng-if="vm.gameStarted && !vm.gameFinished">
+
+          <div class="timer-bar">
+            <div class="timer-bar--progress" style="width: {{ ((vm.timer) / (vm.currentQuestion.time)) * 100 }}%"></div>
+          </div>
+
+          <span>{{ vm.currentQuestion.text }}</span>
+          <div ng-click="vm.answer(answer)" ng-repeat="answer in vm.currentQuestion.answers">
+            {{ answer }}
+          </div>
+
+        </div>
+
+
       </div>
 
-      <span>{{ vm.currentQuestion.text }}</span>
-      <div ng-click="vm.answer(answer)" ng-repeat="answer in vm.currentQuestion.answers">
-        {{ answer }}
-      </div>
-
     </div>
-
 
   </div>
-
 </div>
