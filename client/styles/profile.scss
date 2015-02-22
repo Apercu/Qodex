@@ -21,7 +21,7 @@
 
 }
 
-.profile-classement {
+.profile-classement, .profile-points {
   > span {
     background: $blue2;
     color: $yellow1;
@@ -30,6 +30,11 @@
     border-radius: 6px;
   }
   margin-bottom: 2em;
+}
+
+.profile-points > span {
+  font-size: 15px;
+  padding: .4em .20em;
 }
 
 .profile-badges {

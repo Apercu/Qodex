@@ -3,6 +3,7 @@
 var slug = require('slug');
 var async = require('async');
 var Quizz = require('../api/quizz/quizz.model');
+var User = require('../api/user/user.model');
 
 var rooms = [];
 
@@ -132,9 +133,10 @@ module.exports = function (io) {
 
           }, function (err) {
             if (!err) {
-              io.sockets.in(data.room).emit('gameFinished', {});
-              console.log(room.players);
-              // TODO calc scores here?
+              io.sockets.in(data.room).emit('gameFinished');
+              room.players.forEach(function (player) {
+                User.update({ _id: player.id }, { $inc: { points: player.points } }).exec();
+              });
             } else {
               console.log(err);
             }

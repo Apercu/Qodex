@@ -5,11 +5,16 @@
       <div class="profile-picture">
         <img ng-src="http://graph.facebook.com/{{ Auth.getUser().facebook.id }}/picture?type=large" alt=""/>
       </div>
-      <h1>Coddy420</h1>
+      <h1>{{ vm.username }}</h1>
     </header>
 
+    <section class="profile-points">
+      <span>{{ vm.points }} points</span>
+    </section>
     <section class="profile-classement">
-      <span>15eme/2345</span>
+      <span>
+        {{ vm.rank.me }}<ng-pluralize count="vm.rank.me" when="{ '1': 'er', 'other': 'eme' }"></ng-pluralize>/{{ vm.rank.total }}
+      </span>
     </section>
 
     <ul class="profile-badges">
@@ -61,11 +66,11 @@
           Amis
         </header>
         <ul>
-          <li>Jeano9</li>
+          <li>John_Skeet</li>
           <li>Deuchy34</li>
           <li>ZlatanB</li>
           <li>Coolding77</li>
-          <li>Helper</li>
+          <li>Facebot</li>
         </ul>
       </div>
     </div>
