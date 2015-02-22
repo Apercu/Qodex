@@ -25,6 +25,7 @@
   "node": true,
 
   "globals": {
+    "async": true,
     "console": true,
     "TweenMax": true,
     "TimelineMax": true,
