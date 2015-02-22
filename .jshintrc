@@ -1,7 +1,5 @@
 {
-
   "bitwise": true,
-  "camelcase": true,
   "curly": true,
   "eqeqeq": true,
   "freeze": true,
@@ -28,6 +26,9 @@
 
   "globals": {
     "console": true,
+    "TweenMax": true,
+    "TimelineMax": true,
+    "Back": true,
     "process": true,
     "angular": true,
     "it": true,

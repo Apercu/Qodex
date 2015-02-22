@@ -15,13 +15,15 @@ angular.module('qodex')
           scope.$apply();
         });
         $document.on('click', function (e) {
-          if (e.target === element || e.target === element.find('img')[0]) { return; }
+          if (e.target === element || e.target === element.find('img')[0]) {
+            return;
+          }
           scope.vm.toggle = false;
           scope.$apply();
         });
         document.onkeydown = function(evt) {
           evt = evt || window.event;
-          if (evt.keyCode == 27) {
+          if (evt.keyCode === 27) {
             scope.vm.toggle = false;
             scope.$apply();
           }

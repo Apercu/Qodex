@@ -15,8 +15,7 @@ angular.module('qodex')
           d = document,
           e = d.documentElement,
           g = d.getElementsByTagName('body')[0],
-          x = w.innerWidth || e.clientWidth || g.clientWidth,
-          y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+          x = w.innerWidth || e.clientWidth || g.clientWidth;
 
         var t1 = new TimelineMax({});
 
@@ -32,9 +31,9 @@ angular.module('qodex')
           .to(smiley, 0, {
             x: 0
           })
-          .to(container, .5, {
+          .to(container, 0.5, {
             ease: Back.easeIn,
-            scale:.1,
+            scale: 0.1,
             opacity: 0
           });
 

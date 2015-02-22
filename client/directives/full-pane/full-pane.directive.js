@@ -5,8 +5,6 @@ angular.module('qodex')
     return {
       restrict: 'EA',
       transclude: true,
-      templateUrl: 'directives/full-pane/full-pane.html',
-      link: function (scope, element) {
-      }
+      templateUrl: 'directives/full-pane/full-pane.html'
     };
   });

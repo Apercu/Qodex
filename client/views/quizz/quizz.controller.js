@@ -5,8 +5,6 @@ angular.module('qodex')
 
     var vm = this;
 
-    console.log(quizz)
-
     Socket.emit('listRooms');
 
     Socket.on('listRooms', function (data) {

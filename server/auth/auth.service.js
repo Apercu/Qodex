@@ -40,7 +40,11 @@ var auth = module.exports = {
   },
 
   setTokenCookie: function (req, res) {
-    if (!req.user) return res.status(404).json({ message: 'Something went wrong, please try again.'});
+    if (!req.user) {
+      return res.status(404).json({
+        message: 'Something went wrong, please try again.'
+      });
+    }
     var token = auth.signToken(req.user._id, req.user.role);
     res.cookie('token', JSON.stringify(token));
     res.redirect('/hello');

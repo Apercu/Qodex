@@ -1,7 +1,14 @@
 'use strict';
 
 angular.module('qodex')
-  .service('Auth', function ($rootScope, $cookieStore, $q, $http, $window, $location, User) {
+  .service('Auth', function (
+    $rootScope,
+    $cookieStore,
+    $q,
+    $http,
+    $window,
+    $location,
+    User) {
 
     var _user = {};
 

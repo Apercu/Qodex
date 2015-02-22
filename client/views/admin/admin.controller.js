@@ -39,7 +39,9 @@ angular.module('qodex')
       ** one answer.
       */
       addQuestion: function () {
-        if (!vm.newQuestion.text || !vm.newQuestion.answers.length) { return; }
+        if (!vm.newQuestion.text || !vm.newQuestion.answers.length) {
+          return;
+        }
 
         vm.newQuizz.questions.push(vm.newQuestion);
         vm.newQuestion = { text: '', answers: [] };
@@ -64,7 +66,7 @@ angular.module('qodex')
           console.log(err);
         });
 
-        vm.newQuizz = { name: '', tags: [], questions: [] }
+        vm.newQuizz = { name: '', tags: [], questions: [] };
       }
     });
 
