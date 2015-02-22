@@ -9,7 +9,7 @@ var UserSchema = new Schema({
   passwordHash: String,
   salt: String,
   facebook: {},
-  points: { type: Number, default: 0 }
+  points: { type: Number, default: 1 }
 });
 
 /**

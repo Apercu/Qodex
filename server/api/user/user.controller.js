@@ -36,14 +36,7 @@ exports.getMe = function (req, res) {
     User.find({}, { points: 1 }).sort('points').exec(function (err, users) {
       if (err) { return handleError(res, err); }
 
-      user.rank = { me: users.length + 1, total: users.length };
-
-      users.forEach(function (u) {
-        if (user.points < u.points) {
-          return;
-        }
-        user.rank.me--;
-      });
+      user.rank = { me: users.map(function (e) { return String(e._id); }).indexOf(String(userId)) + 1, total: users.length };
 
       res.status(200).json(user);
     });
