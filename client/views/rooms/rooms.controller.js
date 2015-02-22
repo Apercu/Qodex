@@ -88,7 +88,10 @@ angular.module('qodex')
       if (vm.gameStarted) {
         vm.currentQuestion = data;
         $scope.$root.$broadcast('timer', vm.currentQuestion.time);
-        vm.players.forEach(function (p) { p.played = false; });
+        vm.players.forEach(function (p) {
+          p.played = false;
+          p.lastValid = false;
+        });
         vm.timer = data.time;
 
         interval = $interval(function () {
@@ -113,6 +116,16 @@ angular.module('qodex')
       if (player) {
         player.played = true;
       }
+    });
+
+    Socket.on('updatePlayersInfo', function (users) {
+      users.forEach(function (user) {
+        var player = vm.players[vm.players.map(function (e) { return e.id; }).indexOf(user.id)];
+        if (player) {
+          player.points = user.points;
+          player.lastValid = user.lastValid;
+        }
+      });
     });
 
     Socket.on('gameFinished', function () {

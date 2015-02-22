@@ -19,7 +19,7 @@ module.exports = function (io) {
 
     socket.on('checkRoom', function (data) {
       var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
-      socket.emit('checkRoom', (room && room.launched ? false : true));
+      socket.emit('checkRoom', ((room && room.launched || !room) ? false : true));
     });
 
     /**
@@ -101,6 +101,10 @@ module.exports = function (io) {
 
           async.eachSeries(quizz.questions, function (que, done) {
 
+            room.players.forEach(function (player) {
+              player.lastValid = false;
+            });
+
             var safeQuestion = { _id: que._id, text: que.text, time: que.time, answers: [] };
 
             que.answers.forEach(function (answer) {
@@ -108,9 +112,14 @@ module.exports = function (io) {
             });
 
             io.sockets.in(data.room).emit('nextQuestion', safeQuestion);
+
+            setTimeout(function () {
+              io.sockets.in(data.room).emit('updatePlayersInfo', room.players);
+            }, safeQuestion.time * 1e3);
+
             setTimeout(function () {
               done();
-            }, (que.time * 1e3 + 1e3) || 10000);
+            }, (que.time * 1e3 + 2e3) || 10000);
 
           }, function (err) {
             if (!err) {
@@ -139,6 +148,7 @@ module.exports = function (io) {
               var player = room.players[room.players.map(function (e) { return e.id }).indexOf(data.userId)];
               if (player) {
                 player.points += Number(data.points);
+                player.lastValid = true;
               }
               return;
             }
