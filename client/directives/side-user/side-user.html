@@ -1,10 +1,10 @@
 <div class="side-user">
 
-  <img ng-click="vm.toggle = !vm.toggle"
-       ng-class="{ active: vm.toggle }"
+  <img ng-click="model.toggle = !model.toggle"
+       ng-class="{ active: model.toggle }"
        ng-src="http://graph.facebook.com/{{ Auth.getUser().facebook.id }}/picture?type=large"/>
 
-  <ul class="menu" ng-show="vm.toggle">
+  <ul class="menu" ng-show="model.toggle">
     <li>
       <a href="/account">
         Compte
