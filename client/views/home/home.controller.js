@@ -5,6 +5,8 @@ angular.module('qodex')
 
     var vm = this;
 
+    $scope.ui.topBar = true;
+
     angular.extend(vm, {
       name: 'HomeCtrl',
       list: list,
