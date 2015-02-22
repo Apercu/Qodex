@@ -6,6 +6,8 @@ angular.module('qodex')
       .when('/solo', {
         templateUrl: 'views/solo/solo.html',
         controller: 'SoloCtrl',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        authenticate: true
+
       });
   });

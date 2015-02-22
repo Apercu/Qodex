@@ -7,6 +7,7 @@ angular.module('qodex')
         templateUrl: 'views/multi/multi.html',
         controller: 'MultiCtrl',
         controllerAs: 'vm',
+        authenticate: true,
         resolve: {
           list: function ($q, $http) {
             var deferred = $q.defer();
