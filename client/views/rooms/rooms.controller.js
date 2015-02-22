@@ -42,6 +42,9 @@ angular.module('qodex')
         Socket.emit('launchGame', { room: vm.name });
       },
       answer: function (a) {
+        vm.currentQuestion.answers.forEach(function (e) {
+          e.isNot = e !== a;
+        });
         vm.currentQuestion.answered = true;
         $interval.cancel(interval);
         answerQuestion(a.text);
@@ -90,7 +93,7 @@ angular.module('qodex')
         $scope.$root.$broadcast('timer', vm.currentQuestion.time);
         vm.players.forEach(function (p) {
           p.played = false;
-          p.lastValid = false;
+          p.lastValid = null;
         });
         vm.timer = data.time;
 
@@ -129,6 +132,9 @@ angular.module('qodex')
     });
 
     Socket.on('gameFinished', function () {
+      vm.players.forEach(function (p) {
+        p.lastValid = null;
+      });
       vm.gameFinished = true;
     });
 
@@ -143,9 +149,5 @@ angular.module('qodex')
       Socket.emit('leave', { room: vm.name, user: vm.username, userId: vm.me._id });
       Socket.clean();
     });
-
-    vm.animTimer = function (t) {
-      $scope.$root.$broadcast('timer', t);
-    };
 
   });

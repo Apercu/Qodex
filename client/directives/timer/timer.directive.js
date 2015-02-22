@@ -13,7 +13,9 @@ angular.module('qodex')
         scope.$on('timer', function (e, t) {
           TweenLite.killTweensOf(progress);
           TweenMax.set(progress, {
-            scaleX: 1
+            scaleX: 1,
+            ease: Linear.easeNone,
+            transformOrigin: 'right'
           });
           TweenMax.to(progress, t, {
             scaleX: 0

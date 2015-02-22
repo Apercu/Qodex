@@ -28,12 +28,21 @@
         height: 10px;
         background: $blue2;
         border-radius: 50%;
+        &.valid {
+          background: $green1;
+        }
+        &.invalid {
+          background: $red1;
+        }
       }
 
     }
 
     .player-name {
-
+      span {
+        background: $blue3;
+        padding: .2em .5em;
+      }
     }
 
   }
@@ -46,6 +55,7 @@
   background: red;
   box-shadow: rgba(black, .3) 0 2px 1px;
   border-bottom: 1px solid rgba(white, .8);
+  transform-origin: top left;
   .timer-bar--progress {
     transition: 250ms ease-in-out width;
     background: $blue3;
@@ -59,14 +69,31 @@
   border: 1px solid rgba(white, .9);
   padding: 1em;
   margin-bottom: 1em;
-  &:hover {
+  &:hover, &.isIs {
     background: rgba(black, .7);
     color: white;
     border-color: black;
+  }
+  &.valid {
+    background: #008000;
+  }
+  &.invalid {
+    background: red;
+  }
+  &.disappear {
+    opacity: 0;
+    transition: 150ms ease-out all;
+    transform: translateY(30px);
   }
 }
 
 .scores {
   list-style: decimal;
   margin-left: 40px;
+}
+
+.the-question {
+  padding: 1em;
+  border: 1px dashed rgba(black, .4);
+  border-radius: 5px;
 }

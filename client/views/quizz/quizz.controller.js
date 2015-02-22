@@ -18,7 +18,7 @@ angular.module('qodex')
     });
 
     angular.extend(vm, {
-      name: 'aoeu',
+      name: 'aoeu' + new Date().getTime(),
       quizz: quizz,
       rooms: [],
       createRoom: function () {

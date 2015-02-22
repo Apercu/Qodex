@@ -54,13 +54,21 @@
 
           <timer></timer>
 
-          <div class="explain-block flow">
+          <div class="the-question flow">
             {{ vm.currentQuestion.text }}
           </div>
 
           <div class="row flow">
             <div class="desktop-6 tablet-full mobile-full answer"
+                 ng-class="{
+                   disappear: answer.isNot,
+                   isIs: answer.isNot === false
+                 }"
                  ng-click="vm.answer(answer)"
+                 ng-class="{
+                   valid: vm.isValidAnswer(answer),
+                   invalid: vm.isInvalidAnswer(answer)
+                 }"
                  ng-repeat="answer in vm.currentQuestion.answers">
                 {{ answer.text }}
             </div>
@@ -132,10 +140,16 @@
     <ul class="players-list">
       <li class="player" ng-repeat="player in vm.players | orderBy: 'points'">
         <div class="has-answered">
-          <span class="tick" ng-show="player.played"></span>
+          <span class="tick"
+                ng-class="{
+                  valid: player.lastValid,
+                  invalid: player.lastValid === false
+                }"
+                ng-show="player.played">
+          </span>
         </div>
         <div class="player-name">
-          {{ player.username }} ({{ player.points }})
+          <span>{{ player.username }}</span> ({{ player.points }})
         </div>
       </li>
     </ul>
