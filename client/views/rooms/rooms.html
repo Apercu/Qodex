@@ -59,15 +59,16 @@
           <timer></timer>
 
           <div class="row flow">
-            <div class="desktop-6 tablet-full mobile-full answer"
+            <button class="desktop-6 tablet-full mobile-full answer"
                  ng-class="{
                    disappear: answer.isNot,
                    isIs: answer.isNot === false
                  }"
+                 ng-disabled="answer.isNot || answer.isNot === false"
                  ng-click="vm.answer(answer)"
                  ng-repeat="answer in vm.currentQuestion.answers">
                 {{ answer.text }}
-            </div>
+            </button>
           </div>
 
         </div>
