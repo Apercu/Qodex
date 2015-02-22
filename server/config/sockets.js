@@ -14,7 +14,13 @@ module.exports = function (io) {
     socket.ip = (socket.handshake.address) ? socket.handshake.address : null;
 
     socket.on('listRooms', function () {
-      socket.emit('listRooms', rooms);
+      var out = [];
+      rooms.forEach(function (room) {
+        if (!room.launched) {
+          out.push(room);
+        }
+      });
+      socket.emit('listRooms', out);
     });
 
     socket.on('checkRoom', function (data) {
