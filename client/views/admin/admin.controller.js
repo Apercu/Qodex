@@ -13,7 +13,7 @@ angular.module('qodex')
       name: 'AdminCtrl',
 
       newTag: '',
-      newQuestion: { text: '', answers: [] },
+      newQuestion: { text: '', answers: [], time: 10 },
       newAnswer: { text: '', isOk: false },
       newQuizz: {
         name: '',
@@ -44,7 +44,7 @@ angular.module('qodex')
         }
 
         vm.newQuizz.questions.push(vm.newQuestion);
-        vm.newQuestion = { text: '', answers: [] };
+        vm.newQuestion = { text: '', answers: [], time: 10 };
       },
 
       /*

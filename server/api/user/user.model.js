@@ -8,7 +8,9 @@ var UserSchema = new Schema({
   email: String,
   passwordHash: String,
   salt: String,
-  facebook: {}
+  facebook: {},
+  level: { type: Number, default: 1 },
+  xp: { type: Number, default: 0 }
 });
 
 /**
@@ -17,7 +19,7 @@ var UserSchema = new Schema({
 
 UserSchema
   .virtual('password')
-  .set(function(password) {
+  .set(function (password) {
     this._password = password;
     this.salt = this.makeSalt();
     this.passwordHash = this.encryptPassword(password);

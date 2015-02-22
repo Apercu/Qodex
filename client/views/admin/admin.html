@@ -3,9 +3,10 @@
     cooucou
   </div>
 </div>
+
 <form ng-submit="vm.createQuizz()">
 
-  <h3>Name</h3>
+  <h3>Nom</h3>
   <input type="text" placeholder="name" ng-model="vm.newQuizz.name">
 
   <hr>
@@ -15,7 +16,7 @@
     <li ng-repeat="tag in vm.newQuizz.tags">{{ tag }}</li>
   </ul>
   <input type="text" ng-model="vm.newTag">
-  <input type="button" ng-click="vm.addTag()" value="add">
+  <input type="button" ng-click="vm.addTag()" value="ajouter">
 
   <hr>
 
@@ -28,20 +29,32 @@
     </ul>
 
   </div>
+  <div ng-if="!vm.newQuizz.questions.length">Aucune question pour le moment</div>
 
-  <textarea ng-model="vm.newQuestion.text" placeholder="Markdown"></textarea>
+  <label>
+    Intitule
+    <textarea ng-model="vm.newQuestion.text" placeholder="Markdown"></textarea>
+  </label>
+
+  <label class="block">
+    Duree
+    <input type="number" ng-model="vm.newQuestion.time" placeholder="Time">
+  </label>
 
   <ul>
     <li ng-repeat="answer in vm.newQuestion.answers">{{ answer.text }} ({{ answer.isOk }})</li>
   </ul>
 
   <div>
-    <input type="text" ng-model="vm.newAnswer.text" placeholder="answer">
-    isOk: <input type="checkbox" ng-model="vm.newAnswer.isOk">
-    <input type="button" ng-click="vm.addAnswer()" value="add answer">
+    <label>
+      Reponse
+      <input type="text" ng-model="vm.newAnswer.text" placeholder="answer">
+      isOk: <input type="checkbox" ng-model="vm.newAnswer.isOk">
+    </label>
+    <input type="button" ng-click="vm.addAnswer()" value="ajouter cette reponse">
   </div>
 
-  <input type="button" ng-click="vm.addQuestion()" value="add question">
+  <input type="button" ng-click="vm.addQuestion()" value="ajouter cette question">
 
   <hr>
 

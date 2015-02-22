@@ -13,7 +13,7 @@
         <ng-pluralize count="vm.nbPlayers" when="{ '1': '1 joueur', 'other': '{} joueurs'  }"></ng-pluralize>.
       </p>
 
-      <div class="flow">
+      <div class="flow" ng-if="!vm.gameStarted">
         <p class="flow" ng-if="vm.isLead || true">
           Quand vous etes prets, vous pouvez lancer le test pour tous les membres du salon.
         </p>
@@ -28,7 +28,7 @@
 
   <div class="all-full">
 
-    <div class="chat">
+    <div class="chat" ng-if="!vm.gameStarted">
 
       <ul class="flow chat-messages">
         <li ng-repeat="msg in vm.messages">
@@ -49,6 +49,15 @@
         </div>
 
       </form>
+    </div>
+
+    <div class="quizz" ng-if="vm.gameStarted">
+
+      <span>{{ vm.currentQuestion.text }}</span>
+      <div ng-click="vm.answer(answer)" ng-repeat="answer in vm.currentQuestion.answers">
+        {{ answer }}
+      </div>
+
     </div>
 
 

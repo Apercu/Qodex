@@ -11,6 +11,7 @@ var QuizzSchema = new Schema({
     type: [
       {
         text: String,
+        time: Number,
         answers: [
           {
             text: String,

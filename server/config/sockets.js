@@ -1,6 +1,8 @@
 'use strict';
 
 var slug = require('slug');
+var async = require('async');
+var Quizz = require('../api/quizz/quizz.model');
 
 var rooms = [];
 
@@ -15,6 +17,11 @@ module.exports = function (io) {
       socket.emit('listRooms', rooms);
     });
 
+    socket.on('checkRoom', function (data) {
+      var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
+      socket.emit('checkRoom', (room && room.launched ? false : true));
+    });
+
     /**
      * Create a new room for a quizz
      */
@@ -25,11 +32,11 @@ module.exports = function (io) {
         return ;
       }
 
-      rooms.push({ id: gameId, name: data.name, quizz: data.quizzId, players: 0, launched: false });
+      rooms.push({ id: gameId, name: data.name, quizz: data.quizzId, players: [], nbPlayers: 0, launched: false });
 
       socket.join(gameId);
       socket.emit('roomCreated', { id: gameId });
-      socket.broadcast.emit('newRoom', { id: gameId, name: data.name, quizz: data.quizzId, players: 1 });
+      socket.broadcast.emit('newRoom', { id: gameId, name: data.name, quizz: data.quizzId, nbPlayers: 1 });
     });
 
     /**
@@ -42,8 +49,9 @@ module.exports = function (io) {
       var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
 
       if (room) {
-        room.players++;
-        io.sockets.in(data.room).emit('userJoin', { type: 'join', user: data.user, nbPlayers: room.players });
+        room.players.push({ id: data.userId, points: 0 });
+        room.nbPlayers++;
+        io.sockets.in(data.room).emit('userJoin', { type: 'join', user: data.user, nbPlayers: room.nbPlayers });
       }
     });
 
@@ -53,8 +61,10 @@ module.exports = function (io) {
 
       var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
       if (room) {
-        room.players--;
-        if (room.players === 0) {
+        room.players.splice(room.players.map(function (e) { return e.id; }).indexOf(data.userId), 1);
+
+        room.nbPlayers--;
+        if (room.nbPlayers === 0) {
           io.sockets.emit('removeRoom', { id: room.id });
           rooms.splice(rooms.map(function (e) { return e.id; }).indexOf(room.id), 1);
         }
@@ -81,13 +91,43 @@ module.exports = function (io) {
     socket.on('launchGame', function (data) {
       var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
 
-      if (room) {
+      if (room && !room.launched) {
         room.launched = true;
+        io.sockets.in(data.room).emit('initGame');
+        Quizz.findById(room.quizz).lean().exec(function (err, quizz) {
+          if (err || !quizz) { return; }
+
+          room.quizzObj = quizz;
+
+          async.eachSeries(quizz.questions, function (question, done) {
+
+            question.answers.forEach(function (a) { delete a.isOk; }); //prevent smart people to be dumb
+
+            io.sockets.in(data.room).emit('nextQuestion', question);
+            setTimeout(function () {
+              done();
+            }, (question.time * 1000) || 10000);
+
+          }, function (err) {
+            if (!err) {
+              io.sockets.in(data.room).emit('gameFinished', {});
+              // TODO calc scores here?
+            } else {
+              console.log(err); // error handling
+            }
+          });
+        });
       }
     });
 
+    /**
+     * Listen for user answers
+     */
+    socket.on('respond', function (data) {
+      console.log(data);
+    });
+
     // sockets inserts
-    require('../api/quizz/quizz.socket.js').register(socket);
 
     socket.on('disconnect', function () {
       console.log('[%s] %s disconnected.', new Date().toUTCString(), socket.ip);

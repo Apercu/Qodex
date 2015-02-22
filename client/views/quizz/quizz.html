@@ -10,6 +10,6 @@
 
 <div ng-click="vm.switchRoom(room.id)" ng-repeat="room in vm.rooms" class="quizz-room">
   <h3>{{ room.name }}</h3>
-  <p>avec {{ room.players }} <ng-pluralize count="room.players" when="{ '0': 'joueurs', '1': 'joueur', 'other': 'joueurs' }"></ng-pluralize></p>
+  <p>avec {{ room.nbPlayers }} <ng-pluralize count="room.nbPlayers" when="{ '0': 'joueurs', '1': 'joueur', 'other': 'joueurs' }"></ng-pluralize></p>
 
 </div>
