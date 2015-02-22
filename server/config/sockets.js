@@ -99,21 +99,26 @@ module.exports = function (io) {
 
           room.quizzObj = quizz;
 
-          async.eachSeries(quizz.questions, function (question, done) {
+          async.eachSeries(quizz.questions, function (que, done) {
 
-            question.answers.forEach(function (a) { delete a.isOk; }); //prevent smart people to be dumb
+            var safeQuestion = { _id: que._id, text: que.text, time: que.time, answers: [] };
 
-            io.sockets.in(data.room).emit('nextQuestion', question);
+            que.answers.forEach(function (answer) {
+              safeQuestion.answers.push({ text: answer.text });
+            });
+
+            io.sockets.in(data.room).emit('nextQuestion', safeQuestion);
             setTimeout(function () {
               done();
-            }, (question.time * 1e3 + 1e3) || 10000);
+            }, (que.time * 1e3 + 1e3) || 10000);
 
           }, function (err) {
             if (!err) {
               io.sockets.in(data.room).emit('gameFinished', {});
+              console.log(room.players);
               // TODO calc scores here?
             } else {
-              console.log(err); // error handling
+              console.log(err);
             }
           });
         });
@@ -130,10 +135,10 @@ module.exports = function (io) {
         if (question) {
           io.sockets.in(data.room).emit('playerMove', data.userId);
           question.answers.forEach(function (answer) {
-            if (answer.isOk && answer.text === data.answer) {
+            if (answer.isOk && String(answer.text) === data.answer) {
               var player = room.players[room.players.map(function (e) { return e.id }).indexOf(data.userId)];
               if (player) {
-                player.points += data.points;
+                player.points += Number(data.points);
               }
               return;
             }

@@ -79,7 +79,7 @@ angular.module('qodex')
       vm.messages.push({ txt: data.user + ' a quitte.', user: 'system' });
     });
 
-    Socket.on('initGame', function (data) {
+    Socket.on('initGame', function () {
       vm.gameStarted = true;
       vm.players.forEach(function (p) { p.played = false; });
     });
