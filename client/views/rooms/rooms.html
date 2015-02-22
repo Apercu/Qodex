@@ -31,13 +31,24 @@
           </p>
 
           <div class="flow" ng-if="!vm.gameStarted">
-            <p class="flow" ng-if="vm.isLead">
-              Quand vous etes prets, vous pouvez lancer le test pour tous les membres du salon.
-            </p>
-            <button class="btn btn-plain flow" ng-click="vm.launch()">Lancer</button>
+            <div ng-if="vm.isLead">
+              <p class="flow">
+                Quand vous etes prets, vous pouvez lancer le test pour tous les membres du salon.
+              </p>
+              <button class="btn btn-plain flow" ng-click="vm.launch()">Lancer</button>
+            </div>
+            <div ng-if="!vm.isLead">
+              <p class="flow">
+                En attente de démarrage...
+              </p>
+            </div>
           </div>
 
         </div>
+
+        <!-- ========================================================================================= -->
+        <!-- =                                     questions                                         = -->
+        <!-- ========================================================================================= -->
 
         <div class="game" ng-if="vm.gameStarted && !vm.gameFinished">
 
@@ -55,7 +66,19 @@
             </div>
           </div>
 
+        </div>
 
+        <!-- ========================================================================================= -->
+        <!-- =                                     fin                                               = -->
+        <!-- ========================================================================================= -->
+
+        <div class="explain-block" ng-if="vm.gameFinished">
+          <p class="flow">
+            La partie est terminée.
+          </p>
+          <ol class="scores flow">
+            <li>toto</li>
+          </ol>
         </div>
 
       </div>
@@ -69,6 +92,10 @@
         <!-- ========================================================================================= -->
 
         <div class="chat" ng-if="!vm.gameStarted || vm.gameFinished">
+
+          <p class="flow">
+            Salon de discussion:
+          </p>
 
           <ul class="flow chat-messages">
             <li ng-repeat="msg in vm.messages">
