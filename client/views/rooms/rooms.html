@@ -130,12 +130,12 @@
     <!-- ========================================================================================= -->
 
     <ul class="players-list">
-      <li class="player" ng-repeat="player in vm.players">
+      <li class="player" ng-repeat="player in vm.players | orderBy: 'points'">
         <div class="has-answered">
           <span class="tick" ng-show="player.played"></span>
         </div>
         <div class="player-name">
-          {{ player.username }}
+          {{ player.username }} ({{ player.points }})
         </div>
       </li>
     </ul>
