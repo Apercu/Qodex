@@ -14,9 +14,10 @@
 
       <hr/>
 
-      <button class="btn">
-        login en tant qu'invité
+      <button class="btn" ng-show="vm.shadowIndex < 3" ng-click="vm.incrementShadow()">
+        {{ vm.getShadowText() }}
       </button>
+      <fb-connect ng-show="vm.shadowIndex >= 3"></fb-connect>
 
       <div class="sub-logo" fade-when="ui.isLogging" y="+20">
         <img width="150" class="sublogo" src="assets/images/logo-qodex.svg" alt=""/>

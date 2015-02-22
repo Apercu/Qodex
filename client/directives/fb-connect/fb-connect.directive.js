@@ -6,13 +6,13 @@ angular.module('qodex')
       restrict: 'EA',
       templateUrl: 'directives/fb-connect/fb-connect.html',
       link: function (scope) {
-        scope.vm = {
+        scope.model = {
 
           isConnecting: false,
 
           connect: function () {
             $rootScope.ui.isLogging = true;
-            scope.vm.isConnecting = true;
+            scope.model.isConnecting = true;
             Auth.loginOauth('facebook');
           }
 
