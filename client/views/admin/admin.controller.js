@@ -6,6 +6,7 @@ angular.module('qodex')
     var vm = this;
 
     $scope.$root.ui.topBar = true;
+    $scope.ui.white = true;
 
     $http.get('/api/quizzs').then(function (res) {
       console.log(res.data);

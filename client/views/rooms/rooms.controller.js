@@ -4,6 +4,7 @@ angular.module('qodex')
   .controller('RoomsCtrl', function ($scope, $route, $timeout, $interval, $location, Socket, Auth) {
 
     $scope.ui.topBar = true;
+    $scope.ui.white = true;
 
     var vm = this;
 

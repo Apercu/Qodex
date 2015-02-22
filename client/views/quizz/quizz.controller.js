@@ -6,6 +6,7 @@ angular.module('qodex')
     var vm = this;
 
     $scope.ui.topBar = true;
+    $scope.ui.white = true;
 
     Socket.emit('listRooms');
 

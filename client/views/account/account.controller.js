@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('qodex')
-  .controller('AccountCtrl', function () {
+  .controller('AccountCtrl', function ($scope) {
+
+    $scope.ui.topBar = true;
+    $scope.ui.white = true;
 
     var vm = this;
 
