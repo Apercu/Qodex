@@ -1,6 +1,41 @@
+@import "variables";
+
 .room-title {
   text-align: center;
   font-size: 36px;
   font-weight: bolder;
   margin: 0 auto 2em auto;
+}
+
+.players-list {
+
+  .player {
+
+    display: table;
+
+    .has-answered, .player-name {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .has-answered {
+
+      width: 20px;
+
+      .tick {
+        display: block;
+        width: 10px;
+        height: 10px;
+        background: $blue2;
+        border-radius: 50%;
+      }
+
+    }
+
+    .player-name {
+
+    }
+
+  }
+
 }
