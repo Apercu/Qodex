@@ -65,10 +65,6 @@
                    isIs: answer.isNot === false
                  }"
                  ng-click="vm.answer(answer)"
-                 ng-class="{
-                   valid: vm.isValidAnswer(answer),
-                   invalid: vm.isInvalidAnswer(answer)
-                 }"
                  ng-repeat="answer in vm.currentQuestion.answers">
                 {{ answer.text }}
             </div>
