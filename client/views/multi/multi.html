@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="all-full">
+
+    <div class="code center flow">
+      &lt;choix du niveau⁄&gt;
+    </div>
+
+    <ul class="quizz-list flow">
+      <li ng-repeat="quizz in vm.list" class="quizz" ng-click="vm.navigateTo(quizz.slug)">
+
+        <header>
+          {{ quizz.name }}
+        </header>
+
+        <span ng-repeat="tag in quizz.tags" class="quizz-tag">
+          {{ tag }}
+        </span>
+
+      </li>
+    </ul>
+
+  </div>
+</div>

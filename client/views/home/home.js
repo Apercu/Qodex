@@ -7,17 +7,6 @@ angular.module('qodex')
         templateUrl: 'views/home/home.html',
         controller: 'HomeCtrl',
         controllerAs: 'vm',
-        authenticate: true,
-        resolve: {
-          list: function ($q, $http) {
-            var deferred = $q.defer();
-            $http.get('/api/quizzs').then(function (res) {
-              deferred.resolve(res.data);
-            }, function (err) {
-              deferred.reject(err);
-            });
-            return deferred.promise;
-          }
-        }
+        authenticate: true
       });
   });

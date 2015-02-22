@@ -1,15 +1,23 @@
-<h1>{{ vm.quizz.name }}</h1>
-<span ng-repeat="tag in vm.quizz.tags" class="quizz-tag">{{ tag }}</span>
+<div class="row">
+  <div class="all-full">
 
-<h3>Salons</h3>
+    <div class="code center flow">
+      &lt;choix du salon⁄&gt;
+    </div>
 
-<div>
-  <input type="text" ng-model="vm.name" placeholder="Room name">
-  <button ng-click="vm.createRoom()">Creer un salon</button>
-</div>
+    <div class="flow">
+      <input type="text" ng-model="vm.name" placeholder="Room name">
+      <button ng-click="vm.createRoom()">Creer un salon</button>
+    </div>
 
-<div ng-click="vm.switchRoom(room.id)" ng-repeat="room in vm.rooms" class="quizz-room">
-  <h3>{{ room.name }}</h3>
-  <p>avec {{ room.nbPlayers }} <ng-pluralize count="room.nbPlayers" when="{ '0': 'joueurs', '1': 'joueur', 'other': 'joueurs' }"></ng-pluralize></p>
+    <div class="flow">
 
+      <div ng-click="vm.switchRoom(room.id)" ng-repeat="room in vm.rooms" class="quizz-room">
+        <h3>{{ room.name }}</h3>
+        <p>avec {{ room.nbPlayers }} <ng-pluralize count="room.nbPlayers" when="{ '0': 'joueurs', '1': 'joueur', 'other': 'joueurs' }"></ng-pluralize></p>
+      </div>
+
+    </div>
+
+  </div>
 </div>
