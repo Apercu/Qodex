@@ -53,7 +53,7 @@ angular.module('qodex')
     });
 
     Auth.isLoggedAsync(function () {
-      vm.username = vm.me.first_name || vm.me.email.split('@')[0];
+      vm.username = vm.me.facebook.first_name || (vm.me.email || 'Anonymous@').split('@')[0];
       Socket.emit('checkRoom', { room: vm.name });
     });
 
