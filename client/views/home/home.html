@@ -46,7 +46,7 @@
 
         <div ng-click="vm.switchToQuizz(quizz.slug)"
              ng-repeat="quizz in vm.list"
-             class="quizz-item desktop-4 tablet-3 mobile-full">
+             class="quizz-item desktop-half tablet-full mobile-full">
           <h1>{{ quizz.name }}</h1>
           <span ng-if="quizz.tags" ng-repeat="tag in quizz.tags" class="quizz-tag">{{ tag }}</span>
         </div>

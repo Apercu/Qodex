@@ -1,10 +1,15 @@
+@import "variables";
+
 .quizz-item {
-  border: 1px solid rgba(black, .1);
   padding: 1em;
   margin-bottom: 1em;
   cursor: pointer;
+  background: $blue3;
   &:hover {
-    background: rgba(black, .1);
+    background: $blue2;
+    h1 {
+      color: $yellow2;
+    }
   }
   h1 {
     font-weight: bold;
@@ -13,7 +18,8 @@
 
 .quizz-tag {
   padding: 2px 5px;
-  background-color: darken(white, 20);
+  margin: 0 2px 2px 0;
+  background-color: white;
   font-size: 13px;
 }
 

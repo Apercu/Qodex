@@ -52,11 +52,11 @@
 
         <div class="game" ng-if="vm.gameStarted && !vm.gameFinished">
 
-          <timer></timer>
-
           <div class="the-question flow">
             {{ vm.currentQuestion.text }}
           </div>
+
+          <timer></timer>
 
           <div class="row flow">
             <div class="desktop-6 tablet-full mobile-full answer"

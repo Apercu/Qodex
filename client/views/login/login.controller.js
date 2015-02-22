@@ -6,6 +6,7 @@ angular.module('qodex')
     var vm = this;
 
     $scope.ui.topBar = false;
+    $scope.ui.white = false;
 
     vm.shadowIndex = 0;
 

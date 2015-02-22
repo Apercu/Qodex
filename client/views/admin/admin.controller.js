@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('qodex')
-  .controller('AdminCtrl', function ($http) {
+  .controller('AdminCtrl', function ($http, $scope) {
 
     var vm = this;
+
+    $scope.$root.ui.topBar = true;
 
     $http.get('/api/quizzs').then(function (res) {
       console.log(res.data);
