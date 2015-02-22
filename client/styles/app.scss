@@ -155,16 +155,3 @@ hr {
   border: 1px solid rgba(white, .5);
   box-shadow: rgba(black, .3) 0 2px 3px;
 }
-
-.timer-bar {
-  display: block;
-  margin: 0 auto;
-  width: 500px;
-  height: 3px;
-  background: red;
-  .timer-bar--progress {
-    transition: 250ms ease-in-out width;
-    background: $blue3;
-    height: 3px;
-  }
-}

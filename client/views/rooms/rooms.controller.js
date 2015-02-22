@@ -3,6 +3,8 @@
 angular.module('qodex')
   .controller('RoomsCtrl', function ($scope, $route, $timeout, $interval, $location, Socket, Auth) {
 
+    $scope.ui.topBar = true;
+
     var vm = this;
 
     var interval;
@@ -16,8 +18,6 @@ angular.module('qodex')
         points: !txt ? 0 : ((vm.timer / vm.currentQuestion.time) * 10).toFixed(0)
       });
     }
-
-    $scope.ui.topBar = true;
 
     angular.extend(vm, {
       name: $route.current.params.name,
@@ -87,6 +87,7 @@ angular.module('qodex')
     Socket.on('nextQuestion', function (data) {
       if (vm.gameStarted) {
         vm.currentQuestion = data;
+        $scope.$root.$broadcast('timer', vm.currentQuestion.time);
         vm.players.forEach(function (p) { p.played = false; });
         vm.timer = data.time;
 
@@ -129,5 +130,9 @@ angular.module('qodex')
       Socket.emit('leave', { room: vm.name, user: vm.username, userId: vm.me._id });
       Socket.clean();
     });
+
+    vm.animTimer = function (t) {
+      $scope.$root.$broadcast('timer', t);
+    };
 
   });

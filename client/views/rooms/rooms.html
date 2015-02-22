@@ -39,6 +39,25 @@
 
         </div>
 
+        <div class="game" ng-if="vm.gameStarted && !vm.gameFinished">
+
+          <timer></timer>
+
+          <div class="explain-block flow">
+            {{ vm.currentQuestion.text }}
+          </div>
+
+          <div class="row flow">
+            <div class="desktop-6 tablet-full mobile-full answer"
+                 ng-click="vm.answer(answer)"
+                 ng-repeat="answer in vm.currentQuestion.answers">
+                {{ answer.text }}
+            </div>
+          </div>
+
+
+        </div>
+
       </div>
     </div>
     <div class="row flow">
@@ -71,20 +90,6 @@
 
           </form>
         </div>
-
-        <div class="quizz" ng-if="vm.gameStarted && !vm.gameFinished">
-
-          <div class="timer-bar">
-            <div class="timer-bar--progress" style="width: {{ ((vm.timer) / (vm.currentQuestion.time)) * 100 }}%"></div>
-          </div>
-
-          <span>{{ vm.currentQuestion.text }}</span>
-          <div ng-click="vm.answer(answer)" ng-repeat="answer in vm.currentQuestion.answers">
-            {{ answer }}
-          </div>
-
-        </div>
-
 
       </div>
 

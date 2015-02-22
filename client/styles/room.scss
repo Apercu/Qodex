@@ -39,3 +39,29 @@
   }
 
 }
+
+.timer-bar {
+  display: block;
+  margin: 1em auto;
+  background: red;
+  box-shadow: rgba(black, .3) 0 2px 1px;
+  border-bottom: 1px solid rgba(white, .8);
+  .timer-bar--progress {
+    transition: 250ms ease-in-out width;
+    background: $blue3;
+    height: 5px;
+  }
+}
+
+.answer {
+  cursor: pointer;
+  background: rgba(white, .4);
+  border: 1px solid rgba(white, .9);
+  padding: 1em;
+  margin-bottom: 1em;
+  &:hover {
+    background: rgba(black, .7);
+    color: white;
+    border-color: black;
+  }
+}
