@@ -1,14 +1,26 @@
 <div class="row">
-  <div class="all-full">
+  <div class="desktop-4 tablet-3 mobile-full centered">
 
-    <div class="code center flow">
-      &lt;statistiques⁄&gt;
+    <div class="code center flow marged">
+      &lt;top joueurs⁄&gt;
     </div>
 
     <div class="flow">
 
       <ul class="stats-list">
-        <li ng-repeat="user in vm.users | orderBy: '-points'">{{ user.facebook.first_name || user.email.split('@')[0] }} ({{ user.points }})</li>
+        <li ng-repeat="user in vm.users | orderBy: '-points'">
+          <div class="index">
+            #{{ $index }}
+          </div>
+          <div class="content">
+            <div class="points">
+              {{ user.points }}
+            </div>
+            <div class="name">
+              {{ user.facebook.first_name || user.email.split('@')[0] }}
+            </div>
+          </div>
+        </li>
       </ul>
 
     </div>

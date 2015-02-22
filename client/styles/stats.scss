@@ -1,4 +1,35 @@
 .stats-list {
-  list-style: decimal;
-  margin: 2em;
+  width: 100%;
+
+  > li {
+
+    display: table;
+
+    .index, .content {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .index {
+      width: 50px;
+    }
+
+    .content {
+
+      background: #008000;
+
+      .name, .points {
+        background: red;
+        display: inline-block;
+      }
+
+      .points {
+        float: right;
+        width: 100px;
+      }
+
+    }
+
+  }
+
 }
