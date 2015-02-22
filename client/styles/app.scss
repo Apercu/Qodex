@@ -29,6 +29,10 @@ body {
   margin-top: 2em;
 }
 
+.flow-half + .flow-half {
+  margin-top: 1em;
+}
+
 a {
   color: inherit;
 }
@@ -121,7 +125,7 @@ hr {
 }
 
 .view {
-  padding-top: 9em;
+  padding-top: 7em;
   &.ng-enter {
     -webkit-transition:150ms ease-out all;
     transition:150ms ease-out opacity;

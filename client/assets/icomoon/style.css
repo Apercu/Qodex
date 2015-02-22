@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-4ogtne');
-	src:url('fonts/icomoon.eot?#iefix-4ogtne') format('embedded-opentype'),
-		url('fonts/icomoon.woff?-4ogtne') format('woff'),
-		url('fonts/icomoon.ttf?-4ogtne') format('truetype'),
-		url('fonts/icomoon.svg?-4ogtne#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-vjqbal');
+	src:url('fonts/icomoon.eot?#iefix-vjqbal') format('embedded-opentype'),
+		url('fonts/icomoon.woff?-vjqbal') format('woff'),
+		url('fonts/icomoon.ttf?-vjqbal') format('truetype'),
+		url('fonts/icomoon.svg?-vjqbal#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -25,6 +25,10 @@
 
 .icon-smile:before {
 	content: "\e600";
+}
+
+.icon-graph:before {
+	content: "\e99c";
 }
 
 .icon-facebook:before {

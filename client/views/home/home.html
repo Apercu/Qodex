@@ -1,4 +1,4 @@
-<div class="row flow">
+<div class="row flow-half">
   <div class="desktop-half tablet-half mobile-full">
     <div class="choose-block solo">
       <div class="content">
@@ -34,21 +34,20 @@
     </div>
   </div>
 </div>
-<div class="row flow">
+<div class="row flow-half">
   <div class="all-full">
 
-    <h2 class="dotted-title">
-      <span># Les derniers quizz #</span>
-    </h2>
+    <div class="choose-block classement">
+      <div class="content">
 
-    <div class="quizz-list">
-      <div class="row">
+        <div class="code">
+          &lt;classement&frasl;&gt;
+        </div>
 
-        <div ng-click="vm.switchToQuizz(quizz.slug)"
-             ng-repeat="quizz in vm.list"
-             class="quizz-item desktop-half tablet-full mobile-full">
-          <h1>{{ quizz.name }}</h1>
-          <span ng-if="quizz.tags" ng-repeat="tag in quizz.tags" class="quizz-tag">{{ tag }}</span>
+        <i class="icon-graph"></i>
+
+        <div class="code bottom">
+          &lt;mesure ta bite&frasl;&gt;
         </div>
 
       </div>
