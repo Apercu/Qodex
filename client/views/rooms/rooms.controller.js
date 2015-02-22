@@ -9,6 +9,8 @@ angular.module('qodex')
       Socket.emit('respond', { userId: vm.me._id, answer: txt });
     }
 
+    $scope.ui.topBar = true;
+
     angular.extend(vm, {
       name: $route.current.params.name,
       me: Auth.getUser(),
