@@ -33,6 +33,7 @@ angular.module('qodex')
       gameFinished: false,
       currentQuestion: {},
       timer: null,
+      redirect: false,
 
       sendMessage: function () {
         if (!vm.newMessage) { return; }
@@ -61,6 +62,7 @@ angular.module('qodex')
       if (data) {
         Socket.emit('join', { room: vm.name, user: vm.username, userId: vm.me._id });
       } else {
+        vm.redirect = true;
         $location.path('/');
       }
     });
@@ -147,7 +149,9 @@ angular.module('qodex')
     });
 
     $scope.$on('$destroy', function () {
-      Socket.emit('leave', { room: vm.name, user: vm.username, userId: vm.me._id });
+      if (!vm.redirect) {
+        Socket.emit('leave', { room: vm.name, user: vm.username, userId: vm.me._id });
+      }
       Socket.clean();
     });
 
