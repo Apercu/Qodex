@@ -4,6 +4,7 @@
   > li {
 
     display: table;
+    width: 100%;
 
     .index, .content {
       display: table-cell;
@@ -16,14 +17,12 @@
 
     .content {
 
-      background: #008000;
-
       .name, .points {
-        background: red;
         display: inline-block;
       }
 
       .points {
+        text-align: right;
         float: right;
         width: 100px;
       }
