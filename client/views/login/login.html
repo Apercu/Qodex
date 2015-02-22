@@ -12,7 +12,7 @@
 
       <fb-connect></fb-connect>
 
-      <hr/>
+      <hr fade-when="ui.isLogging" y="+20"/>
 
       <button class="btn" ng-show="vm.shadowIndex < 3" ng-click="vm.incrementShadow()" fade-when="ui.isLogging" y="+20">
         {{ vm.getShadowText() }}
