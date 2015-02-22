@@ -49,7 +49,7 @@ module.exports = function (io) {
       var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
 
       if (room) {
-        room.players.push({ id: data.userId, points: 0 });
+        room.players.push({ id: data.userId, username: data.user, points: 0 });
         room.nbPlayers++;
         io.sockets.in(data.room).emit('userJoin', { type: 'join', user: data.user, nbPlayers: room.nbPlayers });
       }
@@ -93,7 +93,7 @@ module.exports = function (io) {
 
       if (room && !room.launched) {
         room.launched = true;
-        io.sockets.in(data.room).emit('initGame');
+        io.sockets.in(data.room).emit('initGame', room.players);
         Quizz.findById(room.quizz).lean().exec(function (err, quizz) {
           if (err || !quizz) { return; }
 
@@ -128,13 +128,14 @@ module.exports = function (io) {
       if (room) {
         var question = room.quizzObj.questions[room.quizzObj.questions.map(function (e) { return e._id; }).indexOf(data.questionId)];
         if (question) {
+          io.sockets.in(data.room).emit('playerMove', data.userId);
           question.answers.forEach(function (answer) {
             if (answer.isOk && answer.text === data.answer) {
               var player = room.players[room.players.map(function (e) { return e.id }).indexOf(data.userId)];
               if (player) {
                 player.points += data.points;
               }
-              return ;
+              return;
             }
           });
         }

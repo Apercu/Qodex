@@ -24,6 +24,7 @@ angular.module('qodex')
       me: Auth.getUser(),
       username: '',
       isLead: false,
+      players: [],
       nbPlayers: 0,
       messages: [],
       newMessage: '',
@@ -76,13 +77,16 @@ angular.module('qodex')
       vm.messages.push({ txt: data.user + ' a quitte.', user: 'system' });
     });
 
-    Socket.on('initGame', function () {
+    Socket.on('initGame', function (data) {
       vm.gameStarted = true;
+      vm.players = data;
+      vm.players.forEach(function (p) { p.played = false; });
     });
 
     Socket.on('nextQuestion', function (data) {
       if (vm.gameStarted) {
         vm.currentQuestion = data;
+        vm.players.forEach(function (p) { p.played = false; });
         vm.timer = data.time;
 
         interval = $interval(function () {
@@ -99,6 +103,13 @@ angular.module('qodex')
           $interval.cancel(interval);
         }, data.time * 1e3);
 
+      }
+    });
+
+    Socket.on('playerMove', function (id) {
+      var player = vm.players[vm.players.map(function (e) { return e.id; }).indexOf(id)];
+      if (player) {
+        player.played = true;
       }
     });
 

@@ -54,7 +54,6 @@ angular.module('qodex')
       clean: function () {
         subscribes.forEach(function (sub) {
           socket.removeAllListeners(sub);
-          console.log(sub);
         });
         subscribes = [];
       }
