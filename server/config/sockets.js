@@ -51,7 +51,7 @@ module.exports = function (io) {
       if (room) {
         room.players.push({ id: data.userId, username: data.user, points: 0 });
         room.nbPlayers++;
-        io.sockets.in(data.room).emit('userJoin', { type: 'join', user: data.user, nbPlayers: room.nbPlayers });
+        io.sockets.in(data.room).emit('userJoin', { type: 'join', user: data.user, players: room.players });
       }
     });
 

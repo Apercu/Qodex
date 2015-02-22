@@ -62,10 +62,11 @@ angular.module('qodex')
     });
 
     Socket.on('userJoin', function (data) {
-      vm.nbPlayers = data.nbPlayers;
+      vm.nbPlayers = data.players.length;
       if (vm.nbPlayers === 1) {
         vm.isLead = true;
       }
+      vm.players = data.players;
       vm.messages.push({ txt: data.user + ' a rejoint.', user: 'system' });
     });
 
@@ -74,12 +75,12 @@ angular.module('qodex')
       if (vm.nbPlayers === 1) {
         vm.isLead = true;
       }
+      vm.players = data.players;
       vm.messages.push({ txt: data.user + ' a quitte.', user: 'system' });
     });
 
     Socket.on('initGame', function (data) {
       vm.gameStarted = true;
-      vm.players = data;
       vm.players.forEach(function (p) { p.played = false; });
     });
 
