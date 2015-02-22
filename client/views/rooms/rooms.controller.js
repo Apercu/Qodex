@@ -1,14 +1,20 @@
 'use strict';
 
 angular.module('qodex')
-  .controller('RoomsCtrl', function ($scope, $route, $timeout, $interval, Socket, Auth) {
+  .controller('RoomsCtrl', function ($scope, $route, $timeout, $interval, $location, Socket, Auth) {
 
     var vm = this;
 
     var interval;
 
     function answerQuestion (txt) {
-      Socket.emit('respond', { userId: vm.me._id, answer: txt });
+      Socket.emit('respond', {
+        userId: vm.me._id,
+        questionId: vm.currentQuestion._id,
+        answer: txt,
+        room: vm.name,
+        points: !txt ? 0 : ((vm.timer / vm.currentQuestion.time) * 10).toFixed(0)
+      });
     }
 
     $scope.ui.topBar = true;
@@ -37,7 +43,6 @@ angular.module('qodex')
       answer: function (a) {
         vm.currentQuestion.answered = true;
         $interval.cancel(interval);
-        console.log('answering ' + vm.currentQuestion.text);
         answerQuestion(a.text);
       }
     });
@@ -50,6 +55,8 @@ angular.module('qodex')
     Socket.on('checkRoom', function (data) {
       if (data) {
         Socket.emit('join', { room: vm.name, user: vm.username, userId: vm.me._id });
+      } else {
+        $location.path('/');
       }
     });
 
@@ -79,11 +86,10 @@ angular.module('qodex')
         vm.timer = data.time;
 
         interval = $interval(function () {
-          vm.timer -= .1;
-        }, 1e2);
+          vm.timer--;
+        }, 1e3);
 
         $timeout(function () {
-          console.log(vm.currentQuestion)
           if (!vm.currentQuestion.answered) {
             answerQuestion(false);
           }

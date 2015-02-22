@@ -124,7 +124,22 @@ module.exports = function (io) {
      * Listen for user answers
      */
     socket.on('respond', function (data) {
-      console.log(data);
+      var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
+      if (room) {
+        var question = room.quizzObj.questions[room.quizzObj.questions.map(function (e) { return e._id; }).indexOf(data.questionId)];
+        if (question) {
+          question.answers.forEach(function (answer) {
+            if (answer.isOk && answer.text === data.answer) {
+              var player = room.players[room.players.map(function (e) { return e.id }).indexOf(data.userId)];
+              if (player) {
+                player.points += data.points;
+              }
+              return ;
+            }
+          });
+        }
+
+      }
     });
 
     // sockets inserts
