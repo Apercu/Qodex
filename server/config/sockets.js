@@ -65,12 +65,12 @@ module.exports = function (io) {
     });
 
     function leaveRoom (data) {
-      socket.broadcast.to(data.room).emit('userLeave', { type: 'leave', user: data.user });
       socket.leave(data.room);
 
       var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
       if (room) {
         room.players.splice(room.players.map(function (e) { return e.id; }).indexOf(data.userId), 1);
+        socket.broadcast.to(data.room).emit('userLeave', { type: 'leave', user: data.user, players: room.players });
 
         room.nbPlayers--;
         if (room.nbPlayers === 0) {

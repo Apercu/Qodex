@@ -82,7 +82,9 @@
             La partie est terminée.
           </p>
           <ol class="scores flow">
-            <li>toto</li>
+            <li ng-repeat="pl in vm.players | orderBy: '-points'">
+              {{ pl.username }}
+            </li>
           </ol>
         </div>
 
