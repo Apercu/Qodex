@@ -56,6 +56,8 @@ angular.module('qodex', [
       }
     });
 
+    FastClick.attach(document.body);
+
     $rootScope.Auth = Auth;
     $rootScope.ui = {
       isLogging: false
