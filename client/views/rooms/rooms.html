@@ -28,7 +28,7 @@
 
   <div class="all-full">
 
-    <div class="chat" ng-if="!vm.gameStarted">
+    <div class="chat" ng-if="!vm.gameStarted || vm.gameFinished">
 
       <ul class="flow chat-messages">
         <li ng-repeat="msg in vm.messages">
@@ -51,7 +51,11 @@
       </form>
     </div>
 
-    <div class="quizz" ng-if="vm.gameStarted">
+    <div class="quizz" ng-if="vm.gameStarted && !vm.gameFinished">
+
+      <div class="timer-bar">
+        <div class="timer-bar--progress" style="width: {{ ((vm.timer) / (vm.currentQuestion.time)) * 100 }}%"></div>
+      </div>
 
       <span>{{ vm.currentQuestion.text }}</span>
       <div ng-click="vm.answer(answer)" ng-repeat="answer in vm.currentQuestion.answers">

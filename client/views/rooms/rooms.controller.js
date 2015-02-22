@@ -1,9 +1,13 @@
 'use strict';
 
 angular.module('qodex')
-  .controller('RoomsCtrl', function ($scope, $route, Socket, Auth) {
+  .controller('RoomsCtrl', function ($scope, $route, $timeout, $interval, Socket, Auth) {
 
     var vm = this;
+
+    function answerQuestion (txt) {
+      Socket.emit('respond', { userId: vm.me._id, answer: txt });
+    }
 
     angular.extend(vm, {
       name: $route.current.params.name,
@@ -16,6 +20,7 @@ angular.module('qodex')
       gameStarted: false,
       gameFinished: false,
       currentQuestion: {},
+      timer: null,
 
       sendMessage: function () {
         if (!vm.newMessage) { return; }
@@ -26,8 +31,8 @@ angular.module('qodex')
         Socket.emit('launchGame', { room: vm.name });
       },
       answer: function (a) {
-        console.log(a);
-        Socket.emit('respond', {  });
+        vm.currentQuestion.responded = true;
+        answerQuestion(a.text);
       }
     });
 
@@ -64,8 +69,20 @@ angular.module('qodex')
 
     Socket.on('nextQuestion', function (data) {
       if (vm.gameStarted) {
-        console.log(data)
+        if (Object.getOwnPropertyNames(vm.currentQuestion).length && !vm.currentQuestion.responded) {
+          answerQuestion(false);
+        }
         vm.currentQuestion = data;
+        vm.timer = data.time;
+        $timeout(function () {
+          vm.timer--;
+          var interval = $interval(function () {
+            vm.timer--;
+          }, 1e3);
+          $timeout(function () {
+            $interval.cancel(interval);
+          }, data.time * 1e3 + 200);
+        }, 200);
       }
     });
 
