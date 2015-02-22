@@ -42,3 +42,10 @@ exports.getMe = function (req, res) {
     });
   });
 };
+
+exports.listUsers = function (req, res) {
+  User.find({}, '-salt -passwordHash', function (err, users) {
+    if (err) { return handleError(res, err); }
+    res.status(200).json(users);
+  });
+};

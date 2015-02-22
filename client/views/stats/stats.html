@@ -1,3 +1,17 @@
-<div>
-  {{ vm.name }}
+<div class="row">
+  <div class="all-full">
+
+    <div class="code center flow">
+      &lt;statistiques⁄&gt;
+    </div>
+
+    <div class="flow">
+
+      <ul class="stats-list">
+        <li ng-repeat="user in vm.users">{{ user.facebook.first_name || user.email.split('@')[0] }} ({{ user.points }})</li>
+      </ul>
+
+    </div>
+
+  </div>
 </div>
