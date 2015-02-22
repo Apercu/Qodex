@@ -33,7 +33,7 @@ exports.getMe = function (req, res) {
   }, '-salt -passwordHash').lean().exec(function (err, user) {
     if (err) { return handleError(res, err); }
     if (!user) { return res.json(401); }
-    User.find({}, { points: 1 }).sort('points').exec(function (err, users) {
+    User.find({}, { points: 1 }).sort('-points').exec(function (err, users) {
       if (err) { return handleError(res, err); }
 
       user.rank = { me: users.map(function (e) { return String(e._id); }).indexOf(String(userId)) + 1, total: users.length };
