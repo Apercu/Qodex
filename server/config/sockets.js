@@ -126,7 +126,7 @@ module.exports = function (io) {
     socket.on('respond', function (data) {
       var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
       if (room) {
-        var question = room.quizzObj.questions[room.quizzObj.questions.map(function (e) { return e._id; }).indexOf(data.questionId)];
+        var question = room.quizzObj.questions[room.quizzObj.questions.map(function (e) { return String(e._id); }).indexOf(data.questionId)];
         if (question) {
           io.sockets.in(data.room).emit('playerMove', data.userId);
           question.answers.forEach(function (answer) {
