@@ -179,3 +179,21 @@ hr {
   text-align: center;
   margin-top: 7em;
 }
+
+.input-text {
+  font: inherit;
+  width: 100%;
+  padding: .5em;
+}
+
+.admin {
+  h3 {
+    color: $blue2;
+    font-size: 24px;
+    line-height: 1.5em;
+  }
+  .segment-block {
+    padding: 1em;
+    border: 1px solid rgba(black, .5);
+  }
+}

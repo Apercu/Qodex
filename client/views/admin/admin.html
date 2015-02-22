@@ -1,58 +1,77 @@
-<form ng-submit="vm.createQuizz()">
+<div class="row">
+  <div class="all-full admin">
 
-  <h3>Nom</h3>
-  <input type="text" placeholder="name" ng-model="vm.newQuizz.name">
+    <form ng-submit="vm.createQuizz()">
 
-  <hr>
+      <div class="code center flow">
+        &lt;créer un quizz⁄&gt;
+      </div>
 
-  <h3>Tags</h3>
-  <ul>
-    <li ng-repeat="tag in vm.newQuizz.tags">{{ tag }}</li>
-  </ul>
-  <input type="text" ng-model="vm.newTag">
-  <input type="button" ng-click="vm.addTag()" value="ajouter">
+      <div class="flow">
 
-  <hr>
+        <h3>Nom du quizz</h3>
+        <input class="input-text" type="text" placeholder="name" ng-model="vm.newQuizz.name">
 
-  <h3>Questions</h3>
-  <div ng-repeat="question in vm.newQuizz.questions">
+      </div>
 
-    <h6>{{ question.text }}</h6>
-    <ul>
-      <li ng-repeat="question in vm.newQuizz.questions">{{ question }}</li>
-    </ul>
+      <div class="flow">
+
+        <h3>Tags</h3>
+
+        <ul>
+          <li class="quizz-tag" ng-repeat="tag in vm.newQuizz.tags">{{ tag }}</li>
+        </ul>
+
+        <input type="text" class="input-text" ng-model="vm.newTag" placeholder="tag">
+        <button type="button" class="btn btn-plain" ng-click="vm.addTag()">
+          ajouter
+        </button>
+
+      </div>
+
+      <div class="flow">
+
+        <h3>Questions</h3>
+
+        <div ng-repeat="question in vm.newQuizz.questions">
+          <h6>{{ question.text }}</h6>
+        </div>
+
+        <div ng-if="!vm.newQuizz.questions.length">Aucune question pour le moment</div>
+
+        <div class="segment-block">
+
+          <textarea class="input-text" ng-model="vm.newQuestion.text" placeholder="Texte de la question" rows="5"></textarea>
+
+          <label class="block">
+            Duree
+            <input type="number" ng-model="vm.newQuestion.time" placeholder="Time">
+          </label>
+
+          <ul>
+            <li ng-repeat="answer in vm.newQuestion.answers">{{ answer.text }} ({{ answer.isOk }})</li>
+          </ul>
+
+          <div class="segment-block">
+            <input type="text" ng-model="vm.newAnswer.text" placeholder="answer" class="input-text">
+            isOk: <input type="checkbox" ng-model="vm.newAnswer.isOk">
+            <button class="btn btn-plain" ng-click="vm.addAnswer()" type="button">ajouter cette reponse</button>
+          </div>
+
+          <button type="button" class="btn btn-plain" ng-click="vm.addQuestion()">
+            Ajouter la question
+          </button>
+
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn btn-plain flow">
+        Enregistrer le quizz
+      </button>
+
+
+    </form>
 
   </div>
-  <div ng-if="!vm.newQuizz.questions.length">Aucune question pour le moment</div>
-
-  <label>
-    Intitule
-    <textarea ng-model="vm.newQuestion.text" placeholder="Markdown"></textarea>
-  </label>
-
-  <label class="block">
-    Duree
-    <input type="number" ng-model="vm.newQuestion.time" placeholder="Time">
-  </label>
-
-  <ul>
-    <li ng-repeat="answer in vm.newQuestion.answers">{{ answer.text }} ({{ answer.isOk }})</li>
-  </ul>
-
-  <div>
-    <label>
-      Reponse
-      <input type="text" ng-model="vm.newAnswer.text" placeholder="answer">
-      isOk: <input type="checkbox" ng-model="vm.newAnswer.isOk">
-    </label>
-    <input type="button" ng-click="vm.addAnswer()" value="ajouter cette reponse">
-  </div>
-
-  <input type="button" ng-click="vm.addQuestion()" value="ajouter cette question">
-
-  <hr>
-
-  <input type="submit">
-
-
-</form>
+</div>
