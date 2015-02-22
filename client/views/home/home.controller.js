@@ -13,6 +13,9 @@ angular.module('qodex')
       list: list,
       switchToQuizz: function (slug) {
         $location.path('/quizz/' + slug);
+      },
+      navigateTo: function (icon) {
+        $location.path(icon);
       }
     });
 

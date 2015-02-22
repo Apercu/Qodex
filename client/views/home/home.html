@@ -1,6 +1,6 @@
 <div class="row flow-half">
   <div class="desktop-half tablet-half mobile-full">
-    <div class="choose-block solo">
+    <div class="choose-block solo" ng-click="vm.navigateTo('/solo')">
       <div class="content">
 
         <div class="code">
@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="desktop-half tablet-half mobile-full">
-    <div class="choose-block multi">
+    <div class="choose-block multi" ng-click="vm.navigateTo('/multi')">
       <div class="content">
 
         <div class="code">
@@ -37,7 +37,7 @@
 <div class="row flow-half">
   <div class="all-full">
 
-    <div class="choose-block classement">
+    <div class="choose-block classement" ng-click="vm.navigateTo('/stats')">
       <div class="content">
 
         <div class="code">
@@ -47,7 +47,7 @@
         <i class="icon-graph"></i>
 
         <div class="code bottom">
-          &lt;mesure ta bite&frasl;&gt;
+          &lt;mesure ta&frasl;&gt;
         </div>
 
       </div>
