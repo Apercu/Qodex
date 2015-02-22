@@ -45,6 +45,8 @@ module.exports = function (io) {
     socket.on('join', function (data) {
       if (!data.room) { return; }
       socket.join(data.room);
+      socket.qodexRoom = data.room;
+      socket.qodexUser = { id: data.userId, username: data.user };
 
       var room = rooms[rooms.map(function (e) { return e.id; }).indexOf(data.room)];
 
@@ -76,6 +78,7 @@ module.exports = function (io) {
      */
     socket.on('leave', function (data) {
       leaveRoom(data);
+      socket.qodexRoom = null;
     });
 
     /**
@@ -161,6 +164,10 @@ module.exports = function (io) {
     // sockets inserts
 
     socket.on('disconnect', function () {
+      if (socket.qodexRoom) {
+        leaveRoom({ room: socket.qodexRoom, user: socket.qodexUser.username, userId: socket.qodexUser.id });
+      }
+
       console.log('[%s] %s disconnected.', new Date().toUTCString(), socket.ip);
     });
 
