@@ -14,7 +14,7 @@
 
       <hr/>
 
-      <button class="btn" ng-show="vm.shadowIndex < 3" ng-click="vm.incrementShadow()">
+      <button class="btn" ng-show="vm.shadowIndex < 3" ng-click="vm.incrementShadow()" fade-when="ui.isLogging" y="+20">
         {{ vm.getShadowText() }}
       </button>
       <fb-connect ng-show="vm.shadowIndex >= 3"></fb-connect>
