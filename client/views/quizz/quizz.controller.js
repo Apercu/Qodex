@@ -5,6 +5,8 @@ angular.module('qodex')
 
     var vm = this;
 
+    $scope.ui.topBar = true;
+
     Socket.emit('listRooms');
 
     Socket.on('listRooms', function (data) {
@@ -16,7 +18,7 @@ angular.module('qodex')
     });
 
     angular.extend(vm, {
-      name: '',
+      name: 'aoeu',
       quizz: quizz,
       rooms: [],
       createRoom: function () {

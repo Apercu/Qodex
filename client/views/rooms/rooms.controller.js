@@ -5,6 +5,8 @@ angular.module('qodex')
 
     var vm = this;
 
+    var interval;
+
     function answerQuestion (txt) {
       Socket.emit('respond', { userId: vm.me._id, answer: txt });
     }
@@ -33,7 +35,9 @@ angular.module('qodex')
         Socket.emit('launchGame', { room: vm.name });
       },
       answer: function (a) {
-        vm.currentQuestion.responded = true;
+        vm.currentQuestion.answered = true;
+        $interval.cancel(interval);
+        console.log('answering ' + vm.currentQuestion.text);
         answerQuestion(a.text);
       }
     });
@@ -71,20 +75,24 @@ angular.module('qodex')
 
     Socket.on('nextQuestion', function (data) {
       if (vm.gameStarted) {
-        if (Object.getOwnPropertyNames(vm.currentQuestion).length && !vm.currentQuestion.responded) {
-          answerQuestion(false);
-        }
         vm.currentQuestion = data;
         vm.timer = data.time;
+
+        interval = $interval(function () {
+          vm.timer -= .1;
+        }, 1e2);
+
         $timeout(function () {
-          vm.timer--;
-          var interval = $interval(function () {
-            vm.timer--;
-          }, 1e3);
-          $timeout(function () {
-            $interval.cancel(interval);
-          }, data.time * 1e3 + 200);
-        }, 200);
+          console.log(vm.currentQuestion)
+          if (!vm.currentQuestion.answered) {
+            answerQuestion(false);
+          }
+        }, data.time * 1e3);
+
+        $timeout(function () {
+          $interval.cancel(interval);
+        }, data.time * 1e3);
+
       }
     });
 

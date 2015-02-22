@@ -106,7 +106,7 @@ module.exports = function (io) {
             io.sockets.in(data.room).emit('nextQuestion', question);
             setTimeout(function () {
               done();
-            }, (question.time * 1000) || 10000);
+            }, (question.time * 1e3 + 1e3) || 10000);
 
           }, function (err) {
             if (!err) {
