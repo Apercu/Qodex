@@ -16,7 +16,6 @@
   "unused": true,
   "strict": true,
   "maxdepth": 3,
-  "maxlen": 80,
 
   "globalstrict": true,
   "laxcomma": true,
@@ -28,7 +27,9 @@
     "async": true,
     "console": true,
     "TweenMax": true,
+    "FastClick": true,
     "TimelineMax": true,
+    "Linear": true,
     "Back": true,
     "process": true,
     "angular": true,

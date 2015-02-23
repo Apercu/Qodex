@@ -156,7 +156,7 @@ module.exports = function (io) {
           io.sockets.in(data.room).emit('playerMove', data.userId);
           question.answers.forEach(function (answer) {
             if (answer.isOk && String(answer.text) === data.answer) {
-              var player = room.players[room.players.map(function (e) { return e.id }).indexOf(data.userId)];
+              var player = room.players[room.players.map(function (e) { return e.id; }).indexOf(data.userId)];
               if (player) {
                 player.points += Number(data.points);
                 player.lastValid = true;
